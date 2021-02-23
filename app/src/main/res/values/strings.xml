@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">WeatherApp</string>
+    <string name="drawer_title_main">Main</string>
+    <string name="drawer_title_settings">Settings</string>
+    <string name="tab_title_main">Main</string>
+    <string name="tab_title_more">More</string>
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
+    <string name="toast_settings_selected">Settings selected</string>
+</resources>
