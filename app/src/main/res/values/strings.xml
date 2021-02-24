@@ -7,4 +7,8 @@
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
     <string name="toast_settings_selected">Settings selected</string>
+    <string name="celsius_symbol">°C</string>
+    <string name="button_title_more">More</string>
+    <string name="button_title_aqi">AQI %d</string>
+    <string name="sunny">Sunny</string>
 </resources>

@@ -35,8 +35,11 @@ public class MainActivity extends AppCompatActivity {
         drawerToggle.setDrawerIndicatorEnabled(true);
         drawerToggle.syncState();
         drawerLayout.addDrawerListener(drawerToggle);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setupDrawerContent((NavigationView) findViewById(R.id.nav_view_activity_main));
+
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
 
 //        if (savedInstanceState == null) {
 //            getSupportFragmentManager().beginTransaction()

@@ -1,14 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragment.MainFragment">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="Main fragment" />
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/text_view_fragment_main_sign"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text_size_extra_large"
+        app:layout_constraintBottom_toBottomOf="@id/text_view_fragment_main_degrees_value"
+        app:layout_constraintEnd_toStartOf="@id/text_view_fragment_main_degrees_value"
+        app:layout_constraintTop_toTopOf="@id/text_view_fragment_main_degrees_value"
+        tools:text="&#43;" />
 
-</FrameLayout>
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/text_view_fragment_main_degrees_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text_size_extra_extra_large"
+        app:layout_constraintBottom_toTopOf="@id/text_view_fragment_main_weather_status"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed"
+        tools:text="5" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/text_view_fragment_main_celsius_symbol"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/default_padding"
+        android:text="@string/celsius_symbol"
+        android:textSize="@dimen/text_size_large"
+        app:layout_constraintStart_toEndOf="@id/text_view_fragment_main_degrees_value"
+        app:layout_constraintTop_toTopOf="@id/text_view_fragment_main_degrees_value" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/text_view_fragment_main_weather_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/default_small_margin"
+        android:text="@string/sunny"
+        android:textSize="@dimen/text_size_middle"
+        app:layout_constraintBottom_toTopOf="@id/button_fragment_main_aqi"
+        app:layout_constraintEnd_toEndOf="@id/text_view_fragment_main_degrees_value"
+        app:layout_constraintStart_toStartOf="@id/text_view_fragment_main_degrees_value"
+        app:layout_constraintTop_toBottomOf="@id/text_view_fragment_main_degrees_value" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button_fragment_main_aqi"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/default_small_margin"
+        android:text="@string/button_title_aqi"
+        app:layout_constraintBottom_toTopOf="@id/recycler_view_fragment_main"
+        app:layout_constraintEnd_toEndOf="@id/text_view_fragment_main_degrees_value"
+        app:layout_constraintStart_toStartOf="@id/text_view_fragment_main_degrees_value"
+        app:layout_constraintTop_toBottomOf="@id/text_view_fragment_main_weather_status" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button_fragment_main_more"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/button_title_more"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toTopOf="@id/recycler_view_fragment_main"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view_fragment_main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:spanCount="3"
+        tools:itemCount="3"
+        tools:listitem="@layout/rv_item_horizontal" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
