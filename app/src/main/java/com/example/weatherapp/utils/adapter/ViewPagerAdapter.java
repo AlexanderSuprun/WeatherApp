@@ -13,8 +13,8 @@ import com.example.weatherapp.fragment.MoreFragment;
 
 public class ViewPagerAdapter extends FragmentStateAdapter {
 
-    public ViewPagerAdapter(@NonNull Fragment fragment) {
-        super(fragment);
+    public ViewPagerAdapter(@NonNull FragmentActivity fragmentActivity) {
+        super(fragmentActivity);
     }
 
     @NonNull

@@ -2,6 +2,7 @@
 <resources>
     <dimen name="nav_header_height">160dp</dimen>
     <dimen name="default_padding">16dp</dimen>
+    <dimen name="default_small_padding">8dp</dimen>
     <dimen name="text_size_extra_extra_large">112sp</dimen>
     <dimen name="text_size_extra_large">72sp</dimen>
     <dimen name="text_size_large">56sp</dimen>
