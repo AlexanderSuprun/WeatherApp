@@ -11,8 +11,24 @@
     <string name="celsius_symbol">&#176;C</string>
     <string name="button_title_more">More</string>
     <string name="button_title_aqi">AQI %d</string>
-    <string name="sunny">Sunny</string>
+    <string name="content_description_daily_forecast">Weather forecast</string>
+    <string name="content_description_hourly_forecast">Weather forecast</string>
+    <string name="current_weather">Current weather</string>
     <string name="rv_list_item_degrees_day">%d&#176;</string>
     <string name="rv_list_item_degrees_night">%d&#176;</string>
+    <string name="rv_grid_item_degrees">%d&#176;</string>
     <string name="middle_dot">&#183;</string>
+    <string name="content_description_wind_direction">Wind direction</string>
+    <string name="rv_grid_item_wind_speed">%f km/h</string>
+    <string name="title_real_feel">Real feel</string>
+    <string name="real_feel_value">%f°C</string>
+    <string name="chance_of_rain_value">%d%%</string>
+    <string name="title_chance_of_rain">Chance of rain</string>
+    <string name="title_wind_speed">Wind speed</string>
+    <string name="value_wind_speed">%f km/h</string>
+    <string name="title_humidity">Humidity</string>
+    <string name="value_humidity">%d%%</string>
+    <string name="title_pressure">Pressure</string>
+    <string name="value_pressure">%f Pa</string>
+    <string name="title_uv_index">UV index</string>
 </resources>

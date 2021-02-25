@@ -1,10 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="@dimen/rv_grid_item_width"
     android:layout_height="match_parent"
+    android:layout_margin="@dimen/default_small_margin"
     android:orientation="vertical">
 
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/text_view_rv_grid_item_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:alpha="0.8"
+        android:gravity="center"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/text_size_very_small"
+        tools:text="16:00" />
 
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/text_view_rv_grid_item_degrees"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/default_small_margin"
+        android:gravity="center"
+        android:text="@string/rv_grid_item_degrees"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/text_size_small"
+        tools:text="+2&#176;" />
 
+    <ImageView
+        android:id="@+id/image_view_rv_grid_item_icon_weather"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/rv_grid_item_icon_height"
+        android:contentDescription="@string/content_description_hourly_forecast"
+        tools:src="@drawable/ic_sun" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/image_view_rv_grid_item_icon_wind_direction"
+            android:layout_width="12dp"
+            android:layout_height="12dp"
+            android:layout_margin="@dimen/default_small_margin"
+            android:contentDescription="@string/content_description_wind_direction"
+            tools:src="@drawable/ic_wind_arrow_se" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_view_rv_grid_item_wind_speed"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/rv_grid_item_wind_speed"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/text_size_very_small"
+            tools:text="2.8 km/h" />
+    </LinearLayout>
 </LinearLayout>

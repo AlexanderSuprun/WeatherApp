@@ -9,11 +9,11 @@
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/image_view_rv_list_item_icon"
-        android:layout_width="@dimen/rv_item_horizontal_image_view_width"
+        android:layout_width="@dimen/rv_list_item_icon_width"
         android:layout_height="match_parent"
         android:layout_margin="@dimen/default_small_margin"
-        android:contentDescription="@string/sunny"
-        android:src="@drawable/ic_sun" />
+        android:contentDescription="@string/content_description_daily_forecast"
+        tools:src="@drawable/ic_sun" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/text_view_rv_list_item_day_of_week"
