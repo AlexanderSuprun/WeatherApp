@@ -3,12 +3,15 @@
     <dimen name="nav_header_height">160dp</dimen>
     <dimen name="default_padding">16dp</dimen>
     <dimen name="default_small_padding">8dp</dimen>
+    <dimen name="default_small_margin">8dp</dimen>
+    <dimen name="default_margin">16dp</dimen>
     <dimen name="text_size_extra_extra_large">112sp</dimen>
     <dimen name="text_size_extra_large">72sp</dimen>
-    <dimen name="text_size_large">56sp</dimen>
+    <dimen name="text_size_large">32sp</dimen>
     <dimen name="text_size_middle">24sp</dimen>
     <dimen name="text_size_small">20sp</dimen>
-    <dimen name="default_small_margin">8dp</dimen>
+    <dimen name="text_size_very_small">12sp</dimen>
     <dimen name="rv_item_horizontal_height">56dp</dimen>
     <dimen name="rv_item_horizontal_image_view_width">32dp</dimen>
+    <dimen name="default_padding_big">28dp</dimen>
 </resources>

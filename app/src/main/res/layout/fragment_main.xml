@@ -4,12 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg_main_fragment"
     tools:context=".fragment.MainFragment">
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/text_view_fragment_main_sign"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:alpha="0.8"
+        android:textColor="@android:color/white"
         android:textSize="@dimen/text_size_extra_large"
         app:layout_constraintBottom_toBottomOf="@id/text_view_fragment_main_degrees_value"
         app:layout_constraintEnd_toStartOf="@id/text_view_fragment_main_degrees_value"
@@ -20,6 +23,8 @@
         android:id="@+id/text_view_fragment_main_degrees_value"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:alpha="0.8"
+        android:textColor="@android:color/white"
         android:textSize="@dimen/text_size_extra_extra_large"
         app:layout_constraintBottom_toTopOf="@id/text_view_fragment_main_weather_status"
         app:layout_constraintEnd_toEndOf="parent"
@@ -32,8 +37,11 @@
         android:id="@+id/text_view_fragment_main_celsius_symbol"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingTop="@dimen/default_padding"
+        android:alpha="0.8"
+        android:fontFamily="sans-serif-medium"
+        android:paddingTop="@dimen/default_padding_big"
         android:text="@string/celsius_symbol"
+        android:textColor="@android:color/white"
         android:textSize="@dimen/text_size_large"
         app:layout_constraintStart_toEndOf="@id/text_view_fragment_main_degrees_value"
         app:layout_constraintTop_toTopOf="@id/text_view_fragment_main_degrees_value" />
@@ -42,8 +50,9 @@
         android:id="@+id/text_view_fragment_main_weather_status"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/default_small_margin"
+        android:alpha="0.8"
         android:text="@string/sunny"
+        android:textColor="@android:color/white"
         android:textSize="@dimen/text_size_middle"
         app:layout_constraintBottom_toTopOf="@id/button_fragment_main_aqi"
         app:layout_constraintEnd_toEndOf="@id/text_view_fragment_main_degrees_value"
@@ -55,38 +64,43 @@
         style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="80dp"
         android:layout_height="32dp"
-        android:layout_margin="@dimen/default_small_margin"
+        android:layout_marginTop="@dimen/default_margin"
         android:background="@drawable/bg_rounded_button"
         android:drawableStart="@drawable/ic_leaf"
         android:padding="@dimen/default_small_padding"
         android:text="@string/button_title_aqi"
-        android:textSize="12sp"
-        app:layout_constraintBottom_toTopOf="@id/recycler_view_fragment_main"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/text_size_very_small"
+        app:layout_constraintBottom_toTopOf="@id/rv_fragment_main_forecast_daily"
         app:layout_constraintEnd_toEndOf="@id/text_view_fragment_main_degrees_value"
         app:layout_constraintStart_toStartOf="@id/text_view_fragment_main_degrees_value"
-        app:layout_constraintTop_toBottomOf="@id/text_view_fragment_main_weather_status" />
+        app:layout_constraintTop_toBottomOf="@id/text_view_fragment_main_weather_status"
+        tools:text="AQI 20" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button_fragment_main_more"
         style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/default_padding"
+        android:drawableEnd="@drawable/ic_arrow_forward"
+        android:fontFamily="sans-serif"
         android:text="@string/button_title_more"
         android:textAllCaps="false"
-        app:layout_constraintBottom_toTopOf="@id/recycler_view_fragment_main"
+        android:textColor="@android:color/white"
+        app:layout_constraintBottom_toTopOf="@id/rv_fragment_main_forecast_daily"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view_fragment_main"
+        android:id="@+id/rv_fragment_main_forecast_daily"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/default_padding"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:spanCount="3"
         tools:itemCount="3"
-        tools:listitem="@layout/rv_item_horizontal" />
-
-
+        tools:listitem="@layout/rv_list_item" />
 </androidx.constraintlayout.widget.ConstraintLayout>

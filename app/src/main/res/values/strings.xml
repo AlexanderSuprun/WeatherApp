@@ -1,3 +1,4 @@
+
 <resources>
     <string name="app_name">WeatherApp</string>
     <string name="drawer_title_main">Main</string>
@@ -7,8 +8,11 @@
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
     <string name="toast_settings_selected">Settings selected</string>
-    <string name="celsius_symbol">°C</string>
+    <string name="celsius_symbol">&#176;C</string>
     <string name="button_title_more">More</string>
     <string name="button_title_aqi">AQI %d</string>
     <string name="sunny">Sunny</string>
+    <string name="rv_list_item_degrees_day">%d&#176;</string>
+    <string name="rv_list_item_degrees_night">%d&#176;</string>
+    <string name="middle_dot">&#183;</string>
 </resources>

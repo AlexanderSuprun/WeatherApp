@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/rv_item_horizontal_height"
+    android:orientation="horizontal"
+    android:paddingStart="@dimen/default_padding"
+    android:paddingEnd="@dimen/default_padding">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/image_view_rv_list_item_icon"
+        android:layout_width="@dimen/rv_item_horizontal_image_view_width"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/default_small_margin"
+        android:contentDescription="@string/sunny"
+        android:src="@drawable/ic_sun" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/text_view_rv_list_item_day_of_week"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/default_small_margin"
+        android:gravity="center"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/text_size_small"
+        tools:text="Monday" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/middle_dot"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/text_size_middle" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/text_view_rv_list_item_forecast"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/default_small_margin"
+        android:gravity="center"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/text_size_small"
+        tools:text="Sunny" />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/text_view_rv_list_item_degrees_day"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/rv_list_item_degrees_day"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/text_size_small"
+        tools:text="+5&#176;" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/default_small_margin"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/text_size_small"
+        tools:text="&#47;" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/text_view_rv_list_item_degrees_night"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginEnd="@dimen/default_small_margin"
+        android:text="@string/rv_list_item_degrees_night"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/text_size_small"
+        tools:text="0&#176;" />
+</LinearLayout>
