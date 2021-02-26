@@ -11,6 +11,7 @@
         android:id="@+id/rv_fragment_more_forecast_hourly"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_middle_margin"
         android:orientation="horizontal"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:layout_constraintEnd_toEndOf="parent"
@@ -19,20 +20,23 @@
         tools:listitem="@layout/rv_grid_item" />
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/card_view_fragment_more_info"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_margin="@dimen/default_margin"
+        android:layout_marginHorizontal="@dimen/default_margin"
+        android:layout_marginVertical="@dimen/default_middle_margin"
         android:alpha="0.4"
         app:cardCornerRadius="20dp"
         app:cardMaxElevation="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/card_view_fragment_more_aqi"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/rv_fragment_more_forecast_hourly">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:paddingVertical="@dimen/default_padding">
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline"
@@ -46,12 +50,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/default_middle_margin"
-                android:layout_marginTop="@dimen/default_middle_margin"
                 android:text="@string/title_real_feel"
                 android:textSize="@dimen/text_size_very_small"
                 app:layout_constraintBottom_toTopOf="@id/text_view_fragment_more_value_real_feel"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintStart_toStartOf="parent" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/text_view_fragment_more_value_real_feel"
@@ -99,7 +101,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/default_small_margin"
+                android:textSize="@dimen/text_size_small"
                 android:text="@string/value_wind_speed"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="@id/text_view_fragment_more_title_wind_speed"
                 app:layout_constraintTop_toBottomOf="@id/text_view_fragment_more_title_wind_speed"
                 tools:text="2.8 km/h" />
@@ -109,11 +113,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/default_middle_margin"
-                android:layout_marginTop="@dimen/default_middle_margin"
                 android:text="@string/title_humidity"
                 android:textSize="@dimen/text_size_very_small"
-                app:layout_constraintStart_toStartOf="@id/guideline"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintBottom_toTopOf="@id/text_view_fragment_more_value_humidity"
+                app:layout_constraintStart_toStartOf="@id/guideline" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/text_view_fragment_more_value_humidity"
@@ -158,15 +161,65 @@
                 app:layout_constraintTop_toBottomOf="@id/text_size_fragment_more_value_pressure" />
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/text_view_fragment_more_val"
+                android:id="@+id/text_view_fragment_more_value_aqi"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/default_small_margin"
                 android:textSize="@dimen/text_size_small"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="@id/text_view_fragment_more_title_uv_index"
                 app:layout_constraintTop_toBottomOf="@id/text_view_fragment_more_title_uv_index"
                 tools:text="5" />
-
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_view_fragment_more_aqi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/default_margin"
+        android:layout_marginVertical="@dimen/default_middle_margin"
+        android:alpha="0.4"
+        app:cardCornerRadius="20dp"
+        app:cardMaxElevation="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingVertical="@dimen/default_padding">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_view_fragment_more_title_aqi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/default_middle_margin"
+                android:text="@string/title_aid_quality_index"
+                android:textSize="@dimen/text_size_very_small"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/image_view_fragment_more_aqi"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_marginTop="@dimen/default_small_margin"
+                android:src="@drawable/ic_leaf"
+                app:layout_constraintStart_toStartOf="@id/text_view_fragment_more_title_aqi"
+                app:layout_constraintTop_toBottomOf="@id/text_view_fragment_more_title_aqi" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/default_small_margin"
+                app:layout_constraintStart_toEndOf="@id/image_view_fragment_more_aqi"
+                app:layout_constraintTop_toTopOf="@id/image_view_fragment_more_aqi"
+                tools:text="2" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

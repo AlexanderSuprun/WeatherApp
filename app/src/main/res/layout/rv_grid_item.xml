@@ -27,7 +27,7 @@
         android:textSize="@dimen/text_size_small"
         tools:text="+2&#176;" />
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/image_view_rv_grid_item_icon_weather"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/rv_grid_item_icon_height"
@@ -39,7 +39,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/image_view_rv_grid_item_icon_wind_direction"
             android:layout_width="12dp"
             android:layout_height="12dp"

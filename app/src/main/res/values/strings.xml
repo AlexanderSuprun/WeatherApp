@@ -31,4 +31,5 @@
     <string name="title_pressure">Pressure</string>
     <string name="value_pressure">%f Pa</string>
     <string name="title_uv_index">UV index</string>
+    <string name="title_aid_quality_index">Aid Quality Index</string>
 </resources>
