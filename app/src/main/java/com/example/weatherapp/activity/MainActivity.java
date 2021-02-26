@@ -19,6 +19,9 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
+import static com.example.weatherapp.activity.ScreenActivity.EXTRA_LOCATION_LATITUDE;
+import static com.example.weatherapp.activity.ScreenActivity.EXTRA_LOCATION_LONGITUDE;
+
 public class MainActivity extends AppCompatActivity {
 
     private DrawerLayout drawerLayout;
@@ -57,6 +60,13 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }).attach();
+
+        if (getIntent() != null) {
+            Toast.makeText(this,
+                    "Longitude: " + getIntent().getDoubleExtra(EXTRA_LOCATION_LONGITUDE, 0.0) +
+                            "\nLatitude: " + getIntent().getDoubleExtra(EXTRA_LOCATION_LATITUDE, 0.0),
+            Toast.LENGTH_LONG).show();
+        }
     }
 
     @Override
