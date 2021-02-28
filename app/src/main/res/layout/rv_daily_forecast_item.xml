@@ -8,15 +8,15 @@
     android:paddingEnd="@dimen/default_padding">
 
     <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/image_view_rv_list_item_icon"
-        android:layout_width="@dimen/rv_list_item_icon_width"
+        android:id="@+id/image_view_rv_daily_forecast_item_icon"
+        android:layout_width="@dimen/rv_daily_forecast_item_icon_width"
         android:layout_height="match_parent"
         android:layout_margin="@dimen/default_small_margin"
         android:contentDescription="@string/content_description_daily_forecast"
         tools:src="@drawable/ic_sun" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/text_view_rv_list_item_day_of_week"
+        android:id="@+id/text_view_rv_daily_forecast_item_day_of_week"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_margin="@dimen/default_small_margin"
@@ -34,7 +34,7 @@
         android:textSize="@dimen/text_size_middle" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/text_view_rv_list_item_forecast"
+        android:id="@+id/text_view_rv_daily_forecast_item_forecast"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_margin="@dimen/default_small_margin"
@@ -49,11 +49,11 @@
         android:layout_weight="1" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/text_view_rv_list_item_degrees_day"
+        android:id="@+id/text_view_rv_daily_forecast_item_degrees_day"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="@string/rv_list_item_degrees_day"
+        android:text="@string/rv_daily_forecast_item_degrees_day"
         android:textColor="@android:color/white"
         android:textSize="@dimen/text_size_small"
         tools:text="+5&#176;" />
@@ -68,12 +68,12 @@
         tools:text="&#47;" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/text_view_rv_list_item_degrees_night"
+        android:id="@+id/text_view_rv_daily_forecast_item_degrees_night"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginEnd="@dimen/default_small_margin"
-        android:text="@string/rv_list_item_degrees_night"
+        android:text="@string/rv_daily_forecast_item_degrees_night"
         android:textColor="@android:color/white"
         android:textSize="@dimen/text_size_small"
         tools:text="0&#176;" />

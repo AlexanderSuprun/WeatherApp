@@ -52,7 +52,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:alpha="0.8"
-        android:text="@string/current_weather"
         android:textColor="@android:color/white"
         android:textSize="@dimen/text_size_middle"
         app:layout_constraintBottom_toTopOf="@id/button_fragment_main_aqi"
@@ -96,7 +95,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_fragment_main_forecast_daily"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/rv_daily_forecast_height"
         android:paddingBottom="@dimen/default_padding"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -104,5 +103,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:spanCount="3"
         tools:itemCount="3"
-        tools:listitem="@layout/rv_list_item" />
+        tools:listitem="@layout/rv_daily_forecast_item" />
 </androidx.constraintlayout.widget.ConstraintLayout>

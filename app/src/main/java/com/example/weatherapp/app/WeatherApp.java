@@ -5,8 +5,16 @@ import android.content.Context;
 
 public class WeatherApp extends Application {
 
-    public Context getApplicationContext() {
-        return getApplicationContext();
+    private Context context;
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        this.context = getApplicationContext();
+    }
+
+    public Context getAppContext() {
+        return context;
     }
 
 }
