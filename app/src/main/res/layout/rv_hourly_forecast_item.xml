@@ -31,6 +31,7 @@
         android:id="@+id/image_view_rv_hourly_forecast_item_icon_weather"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/rv_hourly_forecast_item_icon_height"
+        android:layout_gravity="center"
         android:contentDescription="@string/content_description_hourly_forecast"
         tools:src="@drawable/ic_sun" />
 

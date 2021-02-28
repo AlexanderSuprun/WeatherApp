@@ -12,6 +12,7 @@
     <dimen name="text_size_middle">24sp</dimen>
     <dimen name="text_size_small">20sp</dimen>
     <dimen name="text_size_very_small">12sp</dimen>
+    <dimen name="rv_daily_forecast_item_height">56dp</dimen>
     <dimen name="rv_daily_forecast_item_icon_width">32dp</dimen>
     <dimen name="default_padding_big">28dp</dimen>
     <dimen name="rv_hourly_forecast_item_width">88dp</dimen>

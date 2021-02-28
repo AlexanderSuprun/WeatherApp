@@ -37,8 +37,15 @@ public class DailyForecastRecyclerAdapter extends RecyclerView.Adapter<DailyFore
         DailyForecastItem item = dailyForecastItems.get(position);
 
         // add more cases for other forecasts
-        if (item.getForecast().equals("Sunny")) {
-            holder.icon.setImageResource(R.drawable.ic_sun);
+        switch (item.getForecast()) {
+            case "Sunny":
+                holder.icon.setImageResource(R.drawable.ic_sun);
+                break;
+            case "Cloudy":
+                holder.icon.setImageResource(R.drawable.ic_cloudy);
+                break;
+            case "Rain":
+                holder.icon.setImageResource(R.drawable.ic_raining);
         }
 
         holder.day.setText(item.getDay());

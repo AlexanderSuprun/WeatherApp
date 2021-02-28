@@ -63,7 +63,7 @@ public class MoreFragment extends Fragment {
         RecyclerView recyclerView = view.findViewById(R.id.rv_fragment_more_forecast_hourly);
 
         hourlyForecastItems.add(new HourlyForecastItem("Now", "Sunny", "SE", 5, 2.5f));
-        hourlyForecastItems.add(new HourlyForecastItem("12:00", "Sunny", "SE", 6, 2.8f));
+        hourlyForecastItems.add(new HourlyForecastItem("12:00", "Rain", "SE", 6, 2.8f));
         hourlyForecastItems.add(new HourlyForecastItem("13:00", "Cloudy", "S", 8, 3.0f));
         hourlyForecastItems.add(new HourlyForecastItem("14:00", "Cloudy", "SE", 10, 2.0f));
         hourlyForecastItems.add(new HourlyForecastItem("15:00", "Rain", "S", 6, 3.5f));
