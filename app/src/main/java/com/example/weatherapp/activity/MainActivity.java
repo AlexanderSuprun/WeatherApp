@@ -1,6 +1,8 @@
 package com.example.weatherapp.activity;
 
 import android.content.res.Configuration;
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -18,6 +20,10 @@ import com.example.weatherapp.utils.adapter.ViewPagerAdapter;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
+
+import java.io.IOException;
+import java.util.List;
+import java.util.Locale;
 
 import static com.example.weatherapp.activity.ScreenActivity.EXTRA_LOCATION_LATITUDE;
 import static com.example.weatherapp.activity.ScreenActivity.EXTRA_LOCATION_LONGITUDE;
@@ -62,10 +68,17 @@ public class MainActivity extends AppCompatActivity {
         }).attach();
 
         if (getIntent() != null) {
-            Toast.makeText(this,
-                    "Longitude: " + getIntent().getDoubleExtra(EXTRA_LOCATION_LONGITUDE, 0.0) +
-                            "\nLatitude: " + getIntent().getDoubleExtra(EXTRA_LOCATION_LATITUDE, 0.0),
-            Toast.LENGTH_LONG).show();
+            double latitude = getIntent().getDoubleExtra(EXTRA_LOCATION_LATITUDE, 0.0);
+            double longitude = getIntent().getDoubleExtra(EXTRA_LOCATION_LONGITUDE, 0.0);
+            Geocoder geocoder = new Geocoder(MainActivity.this, Locale.getDefault());
+            try {
+                List<Address> addresses = geocoder.getFromLocation(latitude, longitude, 1);
+                if (addresses.size() > 0) {
+                    getSupportActionBar().setTitle(addresses.get(0).getLocality());
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 

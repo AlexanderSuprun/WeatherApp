@@ -37,8 +37,15 @@ public class HourlyForecastRecyclerAdapter extends RecyclerView.Adapter<HourlyFo
         HourlyForecastItem item = hourlyForecastItems.get(position);
 
         // add more cases for other forecasts
-        if (item.getForecast().equals("Sunny")) {
-            holder.iconForecast.setImageResource(R.drawable.ic_sun);
+        switch (item.getForecast()) {
+            case "Sunny":
+                holder.iconForecast.setImageResource(R.drawable.ic_sun);
+                break;
+            case "Cloudy":
+                holder.iconForecast.setImageResource(R.drawable.ic_cloudy);
+                break;
+            case "Rain":
+                holder.iconForecast.setImageResource(R.drawable.ic_raining);
         }
 
         switch (item.getWindDirection()) {
