@@ -7,27 +7,33 @@
     android:layout_height="match_parent"
     tools:context=".activity.MainActivity">
 
-    <LinearLayout
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_refresh_activity_main_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <include
-            android:id="@+id/toolbar"
-            layout="@layout/toolbar" />
-
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tab_layout_activity_main"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:foregroundGravity="center_horizontal" />
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/view_pager_activity_main"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1" />
-    </LinearLayout>
+            <include
+                android:id="@+id/toolbar"
+                layout="@layout/toolbar" />
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tab_layout_activity_main"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:foregroundGravity="center_horizontal" />
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/view_pager_activity_main"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+        </LinearLayout>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view_activity_main"

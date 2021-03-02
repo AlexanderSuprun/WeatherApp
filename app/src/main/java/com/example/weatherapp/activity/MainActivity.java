@@ -13,9 +13,11 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.weatherapp.R;
+import com.example.weatherapp.fragment.MainFragment;
 import com.example.weatherapp.utils.adapter.ViewPagerAdapter;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
@@ -28,11 +30,12 @@ import java.util.Locale;
 import static com.example.weatherapp.activity.ScreenActivity.EXTRA_LOCATION_LATITUDE;
 import static com.example.weatherapp.activity.ScreenActivity.EXTRA_LOCATION_LONGITUDE;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements MainFragment.OnButtonMoreClickListener {
 
     private DrawerLayout drawerLayout;
     private Toolbar toolbar;
     private ActionBarDrawerToggle drawerToggle;
+    private ViewPager2 viewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +44,13 @@ public class MainActivity extends AppCompatActivity {
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout_activity_main);
+        SwipeRefreshLayout swipeRefreshLayout = findViewById(R.id.swipe_refresh_activity_main_container);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        });
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -51,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
         drawerLayout.addDrawerListener(drawerToggle);
         setupDrawerContent((NavigationView) findViewById(R.id.nav_view_activity_main));
 
-        ViewPager2 viewPager = findViewById(R.id.view_pager_activity_main);
+        viewPager = findViewById(R.id.view_pager_activity_main);
         viewPager.setAdapter(new ViewPagerAdapter(MainActivity.this));
         TabLayout tabLayout = findViewById(R.id.tab_layout_activity_main);
         new TabLayoutMediator(tabLayout, viewPager, new TabLayoutMediator.TabConfigurationStrategy() {
@@ -80,6 +90,11 @@ public class MainActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
+    }
+
+    @Override
+    public void onButtonClick() {
+        viewPager.setCurrentItem(1);
     }
 
     @Override

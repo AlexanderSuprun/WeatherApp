@@ -32,4 +32,7 @@
     <string name="fragment_more_value_pressure">%.2f hPa</string>
     <string name="title_uv_index">UV index</string>
     <string name="title_aid_quality_index">Aid Quality Index</string>
+    <string name="rationale_message">Allow location tracking to determine the city</string>
+    <string name="button_title_allow">Allow</string>
+    <string name="button_title_cancel">Cancel</string>
 </resources>

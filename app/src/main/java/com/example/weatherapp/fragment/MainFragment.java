@@ -60,5 +60,19 @@ public class MainFragment extends Fragment {
 
         recyclerView.setAdapter(new DailyForecastRecyclerAdapter(dailyForecastItems, getContext()));
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        view.findViewById(R.id.button_fragment_main_more).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (getActivity() instanceof OnButtonMoreClickListener) {
+                    OnButtonMoreClickListener listener = (OnButtonMoreClickListener) getActivity();
+                    listener.onButtonClick();
+                }
+            }
+        });
+    }
+
+    public interface OnButtonMoreClickListener {
+        void onButtonClick();
     }
 }
