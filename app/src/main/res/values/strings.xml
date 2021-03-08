@@ -18,6 +18,7 @@
     <string name="rv_daily_forecast_item_degrees_night">%d&#176;</string>
     <string name="rv_hourly_forecast_item_degrees">%d&#176;</string>
     <string name="middle_dot">&#183;</string>
+    <string name="slash">&#47;</string>
     <string name="content_description_wind_direction">Wind direction</string>
     <string name="rv_hourly_forecast_item_wind_speed">%.1f km/h</string>
     <string name="title_real_feel">Real feel</string>
@@ -32,10 +33,9 @@
     <string name="fragment_more_value_pressure">%.2f hPa</string>
     <string name="title_uv_index">UV index</string>
     <string name="title_aid_quality_index">Aid Quality Index</string>
-    <string name="rationale_message">Allow location tracking to determine the city</string>
+    <string name="rationale_message">Allow positioning by GPS to locate your city</string>
     <string name="button_title_allow">Allow</string>
     <string name="button_title_cancel">Cancel</string>
-    <string name="toast_gps_disabled">GPS disabled</string>
     <string name="alert_message_enable_gps">Please enable GPS</string>
     <string name="button_title_close">Close</string>
 </resources>

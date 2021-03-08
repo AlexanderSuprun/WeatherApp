@@ -203,12 +203,14 @@
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/image_view_fragment_more_aqi"
-                android:layout_width="16dp"
-                android:layout_height="16dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 android:layout_marginTop="@dimen/default_small_margin"
                 android:src="@drawable/ic_leaf"
                 app:layout_constraintStart_toStartOf="@id/text_view_fragment_more_title_aqi"
-                app:layout_constraintTop_toBottomOf="@id/text_view_fragment_more_title_aqi" />
+                app:layout_constraintTop_toBottomOf="@id/text_view_fragment_more_title_aqi"
+                app:layout_constraintBottom_toBottomOf="parent"
+                />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/text_view_fragment_more_value_aqi"
@@ -218,6 +220,7 @@
                 android:layout_marginStart="@dimen/default_small_margin"
                 app:layout_constraintStart_toEndOf="@id/image_view_fragment_more_aqi"
                 app:layout_constraintTop_toTopOf="@id/image_view_fragment_more_aqi"
+                app:layout_constraintBottom_toBottomOf="@id/image_view_fragment_more_aqi"
                 tools:text="2" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
