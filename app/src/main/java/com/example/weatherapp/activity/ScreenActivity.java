@@ -74,9 +74,4 @@ public class ScreenActivity extends AppCompatActivity implements LocationRequest
         mainActivityIntent.putExtra(EXTRA_LOCATION_LONGITUDE, result.getLongitude());
         startActivity(mainActivityIntent);
     }
-
-    @Override
-    public void onProviderDisabled() {
-
-    }
 }

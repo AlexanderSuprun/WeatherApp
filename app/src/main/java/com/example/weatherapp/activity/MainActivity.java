@@ -111,13 +111,7 @@ public class MainActivity extends AppCompatActivity implements MainFragment.OnBu
 
         if (!TextUtils.isEmpty(city) && getSupportActionBar() != null) {
             getSupportActionBar().setTitle(city);
-            swipeRefreshLayout.setRefreshing(false);
         }
-        swipeRefreshLayout.setRefreshing(false);
-    }
-
-    @Override
-    public void onProviderDisabled() {
         swipeRefreshLayout.setRefreshing(false);
     }
 
