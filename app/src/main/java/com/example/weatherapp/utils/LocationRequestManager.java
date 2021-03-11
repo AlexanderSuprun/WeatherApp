@@ -20,8 +20,8 @@ import static com.example.weatherapp.activity.ScreenActivity.LOCATION_REQUEST_CO
 
 public class LocationRequestManager {
 
-    private final Activity activity;
     private final OnLocationResultListener listener;
+    private Activity activity;
 
     public LocationRequestManager(Activity activity) {
         if (activity instanceof OnLocationResultListener) {
@@ -38,15 +38,11 @@ public class LocationRequestManager {
     public void requestLocation() {
         FusedLocationProviderClient locationClient = LocationServices.getFusedLocationProviderClient(activity);
         try {
-            locationClient.getCurrentLocation(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY, null)
+            locationClient.getCurrentLocation(LocationRequest.PRIORITY_HIGH_ACCURACY, null)
                     .addOnSuccessListener(activity, new OnSuccessListener<Location>() {
                         @Override
                         public void onSuccess(Location location) {
-                            if (location != null) {
-                                listener.onLocationResult(location);
-                            } else {
-                                showMessageGPSDisabled();
-                            }
+                            listener.onLocationResult(location);
                         }
                     });
         } catch (SecurityException e) {
@@ -58,10 +54,11 @@ public class LocationRequestManager {
         new AlertDialog.Builder(activity)
                 .setMessage(R.string.rationale_message)
                 .setPositiveButton(activity.getString(R.string.button_title_allow), new DialogInterface.OnClickListener() {
+
                     @RequiresApi(api = Build.VERSION_CODES.M)
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        activity.requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, LOCATION_REQUEST_CODE);
+                            activity.requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, LOCATION_REQUEST_CODE);
                     }
                 })
                 .setNegativeButton(activity.getString(R.string.button_title_cancel), new DialogInterface.OnClickListener() {
@@ -76,17 +73,8 @@ public class LocationRequestManager {
                 .show();
     }
 
-    private void showMessageGPSDisabled() {
-        new AlertDialog.Builder(activity)
-                .setMessage(R.string.alert_message_enable_gps)
-                .setNeutralButton(activity.getString(R.string.button_title_close), new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                })
-                .create()
-                .show();
+    public void clearActivity() {
+        activity = null;
     }
 
     public interface OnLocationResultListener {

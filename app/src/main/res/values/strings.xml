@@ -38,4 +38,20 @@
     <string name="button_title_cancel">Cancel</string>
     <string name="alert_message_enable_gps">Please enable GPS</string>
     <string name="button_title_close">Close</string>
+    <string name="day_today">Today</string>
+    <string name="day_monday">Monday</string>
+    <string name="day_tuesday">Tuesday</string>
+    <string name="day_wednesday">Wednesday</string>
+    <string name="day_thursday">Thursday</string>
+    <string name="weather_sunny">Sunny</string>
+    <string name="weather_cloudy">Cloudy</string>
+    <string name="weather_rain">Rain</string>
+    <string name="time_now">Now</string>
+    <string name="time_12_00">12:00</string>
+    <string name="time_13_00">13:00</string>
+    <string name="time_14_00">14:00</string>
+    <string name="time_15_00">15:00</string>
+    <string name="time_16_00">16:00</string>
+    <string name="wind_direction_se">SE</string>
+    <string name="wind_direction_s">S</string>
 </resources>

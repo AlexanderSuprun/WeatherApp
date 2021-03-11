@@ -6,9 +6,7 @@ import android.location.Geocoder;
 import android.location.Location;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.MenuItem;
-import android.view.Window;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -38,6 +36,7 @@ import static com.example.weatherapp.activity.ScreenActivity.EXTRA_LOCATION_LONG
 public class MainActivity extends AppCompatActivity implements MainFragment.OnButtonMoreClickListener,
         LocationRequestManager.OnLocationResultListener {
 
+    private final LocationRequestManager locationManager = new LocationRequestManager(MainActivity.this);
     private DrawerLayout drawerLayout;
     private SwipeRefreshLayout swipeRefreshLayout;
     private ActionBarDrawerToggle drawerToggle;
@@ -53,7 +52,7 @@ public class MainActivity extends AppCompatActivity implements MainFragment.OnBu
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                new LocationRequestManager(MainActivity.this).requestLocation();
+                locationManager.requestLocation();
             }
         });
 
@@ -107,10 +106,11 @@ public class MainActivity extends AppCompatActivity implements MainFragment.OnBu
 
     @Override
     public void onLocationResult(Location result) {
-        String city = getCity(result.getLatitude(), result.getLongitude());
-
-        if (!TextUtils.isEmpty(city) && getSupportActionBar() != null) {
-            getSupportActionBar().setTitle(city);
+        if (result != null) {
+            String city = getCity(result.getLatitude(), result.getLongitude());
+            if (!TextUtils.isEmpty(city) && getSupportActionBar() != null) {
+                getSupportActionBar().setTitle(city);
+            }
         }
         swipeRefreshLayout.setRefreshing(false);
     }
@@ -136,9 +136,7 @@ public class MainActivity extends AppCompatActivity implements MainFragment.OnBu
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                if (item.getItemId() == R.id.item_drawer_view_main) {
-
-                } else if (item.getItemId() == R.id.item_drawer_view_settings) {
+                if (item.getItemId() == R.id.item_drawer_view_settings) {
                     Toast.makeText(MainActivity.this, getString(R.string.toast_settings_selected),
                             Toast.LENGTH_SHORT).show();
                 }
@@ -155,5 +153,11 @@ public class MainActivity extends AppCompatActivity implements MainFragment.OnBu
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         return drawerToggle.onOptionsItemSelected(item) || super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        locationManager.clearActivity();
     }
 }

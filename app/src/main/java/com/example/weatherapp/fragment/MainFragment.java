@@ -48,15 +48,15 @@ public class MainFragment extends Fragment {
 
         ((AppCompatTextView) view.findViewById(R.id.text_view_fragment_main_degrees_value)).setText("5");
         ((AppCompatTextView) view.findViewById(R.id.text_view_fragment_main_sign)).setText("+");
-        ((AppCompatTextView) view.findViewById(R.id.text_view_fragment_main_weather_status)).setText("Sunny");
+        ((AppCompatTextView) view.findViewById(R.id.text_view_fragment_main_weather_status)).setText(getString(R.string.weather_sunny));
         ((AppCompatButton) view.findViewById(R.id.button_fragment_main_aqi)).setText(getString(R.string.button_title_aqi,20));
         RecyclerView recyclerView = view.findViewById(R.id.rv_fragment_main_forecast_daily);
 
-        dailyForecastItems.add(new DailyForecastItem("Today", "Sunny", +5, +2));
-        dailyForecastItems.add(new DailyForecastItem("Monday", "Cloudy", 0, -1));
-        dailyForecastItems.add(new DailyForecastItem("Tuesday", "Sunny", +2, 0));
-        dailyForecastItems.add(new DailyForecastItem("Wednesday", "Rain", +3, -2));
-        dailyForecastItems.add(new DailyForecastItem("Thursday", "Sunny", +6, +2));
+        dailyForecastItems.add(new DailyForecastItem(getString(R.string.day_today), getString(R.string.weather_sunny), +5, +2));
+        dailyForecastItems.add(new DailyForecastItem(getString(R.string.day_monday), getString(R.string.weather_cloudy), 0, -1));
+        dailyForecastItems.add(new DailyForecastItem(getString(R.string.day_tuesday), getString(R.string.weather_sunny), +2, 0));
+        dailyForecastItems.add(new DailyForecastItem(getString(R.string.day_wednesday), getString(R.string.weather_rain), +3, -2));
+        dailyForecastItems.add(new DailyForecastItem(getString(R.string.day_thursday), getString(R.string.weather_sunny), +6, +2));
 
         recyclerView.setAdapter(new DailyForecastRecyclerAdapter(dailyForecastItems, getContext()));
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));

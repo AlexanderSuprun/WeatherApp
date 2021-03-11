@@ -6,7 +6,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -62,12 +61,12 @@ public class MoreFragment extends Fragment {
                 .setText("38");
         RecyclerView recyclerView = view.findViewById(R.id.rv_fragment_more_forecast_hourly);
 
-        hourlyForecastItems.add(new HourlyForecastItem("Now", "Sunny", "SE", 5, 2.5f));
-        hourlyForecastItems.add(new HourlyForecastItem("12:00", "Rain", "SE", 6, 2.8f));
-        hourlyForecastItems.add(new HourlyForecastItem("13:00", "Cloudy", "S", 8, 3.0f));
-        hourlyForecastItems.add(new HourlyForecastItem("14:00", "Cloudy", "SE", 10, 2.0f));
-        hourlyForecastItems.add(new HourlyForecastItem("15:00", "Rain", "S", 6, 3.5f));
-        hourlyForecastItems.add(new HourlyForecastItem("16:00", "Sunny", "SE", 4, 2.1f));
+        hourlyForecastItems.add(new HourlyForecastItem(getString(R.string.time_now), getString(R.string.weather_sunny), getString(R.string.wind_direction_se), 5, 2.5f));
+        hourlyForecastItems.add(new HourlyForecastItem(getString(R.string.time_12_00), getString(R.string.weather_rain), getString(R.string.wind_direction_se), 6, 2.8f));
+        hourlyForecastItems.add(new HourlyForecastItem(getString(R.string.time_13_00), getString(R.string.weather_cloudy), getString(R.string.wind_direction_s), 8, 3.0f));
+        hourlyForecastItems.add(new HourlyForecastItem(getString(R.string.time_14_00), getString(R.string.weather_cloudy), getString(R.string.wind_direction_se), 10, 2.0f));
+        hourlyForecastItems.add(new HourlyForecastItem(getString(R.string.time_15_00), getString(R.string.weather_rain), getString(R.string.wind_direction_s), 6, 3.5f));
+        hourlyForecastItems.add(new HourlyForecastItem(getString(R.string.time_16_00), getString(R.string.weather_sunny), getString(R.string.wind_direction_se), 4, 2.1f));
 
         recyclerView.setAdapter(new HourlyForecastRecyclerAdapter(hourlyForecastItems, getContext()));
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
