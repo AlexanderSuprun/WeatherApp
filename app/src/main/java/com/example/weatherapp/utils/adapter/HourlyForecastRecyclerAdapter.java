@@ -11,16 +11,16 @@ import androidx.appcompat.widget.AppCompatTextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.weatherapp.R;
-import com.example.weatherapp.model.HourlyForecastItem;
+import com.example.weatherapp.model.HourlyForecast;
 
 import java.util.ArrayList;
 
 public class HourlyForecastRecyclerAdapter extends RecyclerView.Adapter<HourlyForecastRecyclerAdapter.ViewHolder> {
 
-    private final ArrayList<HourlyForecastItem> hourlyForecastItems;
+    private final ArrayList<HourlyForecast> hourlyForecastItems;
     private final Context context;
 
-    public HourlyForecastRecyclerAdapter(ArrayList<HourlyForecastItem> hourlyForecastItems, Context context) {
+    public HourlyForecastRecyclerAdapter(ArrayList<HourlyForecast> hourlyForecastItems, Context context) {
         this.hourlyForecastItems = hourlyForecastItems;
         this.context = context;
     }
@@ -34,7 +34,7 @@ public class HourlyForecastRecyclerAdapter extends RecyclerView.Adapter<HourlyFo
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        HourlyForecastItem item = hourlyForecastItems.get(position);
+        HourlyForecast item = hourlyForecastItems.get(position);
 
         // add more cases for other forecasts
         switch (item.getForecast()) {
@@ -56,7 +56,7 @@ public class HourlyForecastRecyclerAdapter extends RecyclerView.Adapter<HourlyFo
                 holder.iconWindDirection.setImageResource(R.drawable.ic_wind_arrow_s);
         }
 
-        holder.time.setText(item.getTime());
+        holder.time.setText(item.getEpochTime());
         holder.temperature.setText(context.getString(R.string.rv_hourly_forecast_item_degrees, item.getTemperature()));
         holder.windSpeed.setText(context.getString(R.string.rv_hourly_forecast_item_wind_speed, item.getWindSpeed()));
     }

@@ -16,7 +16,7 @@ import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
 
-import static com.example.weatherapp.activity.ScreenActivity.LOCATION_REQUEST_CODE;
+import static com.example.weatherapp.screen.MainActivity.LOCATION_REQUEST_CODE;
 
 public class LocationRequestManager {
 

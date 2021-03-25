@@ -5,7 +5,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg_main_fragment"
-    tools:context=".fragment.MainFragment">
+    tools:context=".screen.main.MainFragment">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/text_view_fragment_main_city"
+        android:text="@string/app_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:layout_marginTop="@dimen/default_middle_margin"
+        android:textSize="@dimen/text_size_small"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/text_view_fragment_main_sign"
@@ -24,13 +36,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:alpha="0.8"
-        app:layout_constraintVertical_bias="0.4"
         android:textColor="@android:color/white"
         android:textSize="@dimen/text_size_extra_extra_large"
         app:layout_constraintBottom_toTopOf="@id/text_view_fragment_main_weather_status"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.4"
         app:layout_constraintVertical_chainStyle="packed"
         tools:text="5" />
 

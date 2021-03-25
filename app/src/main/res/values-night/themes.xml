@@ -16,10 +16,4 @@
         <item name="windowNoTitle">true</item>
         <item name="android:windowTranslucentStatus">true</item>
     </style>
-
-    <style name="AppToolbar" parent="Widget.AppCompat.Toolbar">
-        <item name="android:background">?attr/colorPrimary</item>
-        <item name="android:gravity">center</item>
-        <item name="titleTextColor">@color/white</item>
-    </style>
 </resources>

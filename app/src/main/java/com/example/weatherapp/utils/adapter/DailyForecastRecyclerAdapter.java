@@ -11,16 +11,16 @@ import androidx.appcompat.widget.AppCompatTextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.weatherapp.R;
-import com.example.weatherapp.model.DailyForecastItem;
+import com.example.weatherapp.model.DailyForecast;
 
 import java.util.ArrayList;
 
 public class DailyForecastRecyclerAdapter extends RecyclerView.Adapter<DailyForecastRecyclerAdapter.ViewHolder> {
 
-    private final ArrayList<DailyForecastItem> dailyForecastItems;
+    private final ArrayList<DailyForecast> dailyForecastItems;
     private final Context context;
 
-    public DailyForecastRecyclerAdapter(ArrayList<DailyForecastItem> dailyForecastItems, Context context) {
+    public DailyForecastRecyclerAdapter(ArrayList<DailyForecast> dailyForecastItems, Context context) {
         this.dailyForecastItems = dailyForecastItems;
         this.context = context;
     }
@@ -34,24 +34,24 @@ public class DailyForecastRecyclerAdapter extends RecyclerView.Adapter<DailyFore
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        DailyForecastItem item = dailyForecastItems.get(position);
+        DailyForecast item = dailyForecastItems.get(position);
 
         // add more cases for other forecasts
-        switch (item.getForecast()) {
-            case "Sunny":
-                holder.icon.setImageResource(R.drawable.ic_sun);
-                break;
-            case "Cloudy":
-                holder.icon.setImageResource(R.drawable.ic_cloudy);
-                break;
-            case "Rain":
-                holder.icon.setImageResource(R.drawable.ic_raining);
-        }
+//        switch (item.getForecast()) {
+//            case "Sunny":
+//                holder.icon.setImageResource(R.drawable.ic_sun);
+//                break;
+//            case "Cloudy":
+//                holder.icon.setImageResource(R.drawable.ic_cloudy);
+//                break;
+//            case "Rain":
+//                holder.icon.setImageResource(R.drawable.ic_raining);
+//        }
 
-        holder.day.setText(item.getDay());
-        holder.forecast.setText(item.getForecast());
-        holder.temperatureDay.setText(context.getString(R.string.rv_daily_forecast_item_degrees_day, item.getTemperatureDay()));
-        holder.temperatureNight.setText(context.getString(R.string.rv_daily_forecast_item_degrees_night, item.getTemperatureNight()));
+//        holder.day.setText(item.getDay());
+//        holder.forecast.setText(item.getForecast());
+//        holder.temperatureDay.setText(context.getString(R.string.rv_daily_forecast_item_degrees_day, item.getTemperatureMax()));
+//        holder.temperatureNight.setText(context.getString(R.string.rv_daily_forecast_item_degrees_night, item.getTemperatureMin()));
     }
 
     @Override
@@ -73,8 +73,8 @@ public class DailyForecastRecyclerAdapter extends RecyclerView.Adapter<DailyFore
             icon = itemView.findViewById(R.id.image_view_rv_daily_forecast_item_icon);
             day = itemView.findViewById(R.id.text_view_rv_daily_forecast_item_day_of_week);
             forecast = itemView.findViewById(R.id.text_view_rv_daily_forecast_item_forecast);
-            temperatureDay = itemView.findViewById(R.id.text_view_rv_daily_forecast_item_degrees_day);
-            temperatureNight = itemView.findViewById(R.id.text_view_rv_daily_forecast_item_degrees_night);
+            temperatureDay = itemView.findViewById(R.id.text_view_rv_daily_forecast_item_degrees_max);
+            temperatureNight = itemView.findViewById(R.id.text_view_rv_daily_forecast_item_degrees_min);
         }
     }
 

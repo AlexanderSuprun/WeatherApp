@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg_more_fragment"
-    tools:context=".fragment.MoreFragment">
+    tools:context=".screen.more.MoreFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_fragment_more_forecast_hourly"

@@ -3,12 +3,10 @@ package com.example.weatherapp.utils.adapter;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.lifecycle.Lifecycle;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-import com.example.weatherapp.fragment.MainFragment;
-import com.example.weatherapp.fragment.MoreFragment;
+import com.example.weatherapp.screen.main.MainFragment;
+import com.example.weatherapp.screen.more.MoreFragment;
 
 
 public class ViewPagerAdapter extends FragmentStateAdapter {

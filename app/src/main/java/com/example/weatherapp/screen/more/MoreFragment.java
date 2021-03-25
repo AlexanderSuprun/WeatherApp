@@ -1,4 +1,4 @@
-package com.example.weatherapp.fragment;
+package com.example.weatherapp.screen.more;
 
 import android.os.Bundle;
 
@@ -14,7 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.weatherapp.R;
-import com.example.weatherapp.model.HourlyForecastItem;
+import com.example.weatherapp.model.HourlyForecast;
 import com.example.weatherapp.utils.adapter.HourlyForecastRecyclerAdapter;
 
 import java.util.ArrayList;
@@ -43,7 +43,7 @@ public class MoreFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        ArrayList<HourlyForecastItem> hourlyForecastItems = new ArrayList<>();
+        ArrayList<HourlyForecast> hourlyForecastItems = new ArrayList<>();
 
         ((AppCompatTextView) view.findViewById(R.id.text_view_fragment_more_value_real_feel))
                 .setText(getString(R.string.fragment_more_real_feel_value, 4.5));
@@ -61,12 +61,12 @@ public class MoreFragment extends Fragment {
                 .setText("38");
         RecyclerView recyclerView = view.findViewById(R.id.rv_fragment_more_forecast_hourly);
 
-        hourlyForecastItems.add(new HourlyForecastItem(getString(R.string.time_now), getString(R.string.weather_sunny), getString(R.string.wind_direction_se), 5, 2.5f));
-        hourlyForecastItems.add(new HourlyForecastItem(getString(R.string.time_12_00), getString(R.string.weather_rain), getString(R.string.wind_direction_se), 6, 2.8f));
-        hourlyForecastItems.add(new HourlyForecastItem(getString(R.string.time_13_00), getString(R.string.weather_cloudy), getString(R.string.wind_direction_s), 8, 3.0f));
-        hourlyForecastItems.add(new HourlyForecastItem(getString(R.string.time_14_00), getString(R.string.weather_cloudy), getString(R.string.wind_direction_se), 10, 2.0f));
-        hourlyForecastItems.add(new HourlyForecastItem(getString(R.string.time_15_00), getString(R.string.weather_rain), getString(R.string.wind_direction_s), 6, 3.5f));
-        hourlyForecastItems.add(new HourlyForecastItem(getString(R.string.time_16_00), getString(R.string.weather_sunny), getString(R.string.wind_direction_se), 4, 2.1f));
+//        hourlyForecastItems.add(new HourlyForecast(getString(R.string.time_now), getString(R.string.weather_sunny), getString(R.string.wind_direction_se), 5, 2.5f));
+//        hourlyForecastItems.add(new HourlyForecast(getString(R.string.time_12_00), getString(R.string.weather_rain), getString(R.string.wind_direction_se), 6, 2.8f));
+//        hourlyForecastItems.add(new HourlyForecast(getString(R.string.time_13_00), getString(R.string.weather_cloudy), getString(R.string.wind_direction_s), 8, 3.0f));
+//        hourlyForecastItems.add(new HourlyForecast(getString(R.string.time_14_00), getString(R.string.weather_cloudy), getString(R.string.wind_direction_se), 10, 2.0f));
+//        hourlyForecastItems.add(new HourlyForecast(getString(R.string.time_15_00), getString(R.string.weather_rain), getString(R.string.wind_direction_s), 6, 3.5f));
+//        hourlyForecastItems.add(new HourlyForecast(getString(R.string.time_16_00), getString(R.string.weather_sunny), getString(R.string.wind_direction_se), 4, 2.1f));
 
         recyclerView.setAdapter(new HourlyForecastRecyclerAdapter(hourlyForecastItems, getContext()));
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));

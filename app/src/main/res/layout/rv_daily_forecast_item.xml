@@ -59,7 +59,7 @@
         tools:text="Sunny" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/text_view_rv_daily_forecast_item_degrees_day"
+        android:id="@+id/text_view_rv_daily_forecast_item_degrees_max"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -81,13 +81,13 @@
         android:textColor="@android:color/white"
         android:textSize="@dimen/text_size_small"
         android:text="@string/slash"
-        app:layout_constraintEnd_toStartOf="@id/text_view_rv_daily_forecast_item_degrees_night"
+        app:layout_constraintEnd_toStartOf="@id/text_view_rv_daily_forecast_item_degrees_min"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         tools:text="&#47;" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/text_view_rv_daily_forecast_item_degrees_night"
+        android:id="@+id/text_view_rv_daily_forecast_item_degrees_min"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
