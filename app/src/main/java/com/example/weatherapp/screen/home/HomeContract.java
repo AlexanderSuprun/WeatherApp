@@ -18,9 +18,9 @@ interface HomeContract {
 
         void dropView();
 
-        void requestDailyForecast(int locationKey);
+        void getDailyForecasts();
 
-        void requestCurrentWeather(int locationKey);
+        void getCurrentWeather();
 
     }
 }

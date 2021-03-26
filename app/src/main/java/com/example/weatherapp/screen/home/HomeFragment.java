@@ -1,6 +1,9 @@
 package com.example.weatherapp.screen.home;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -9,10 +12,6 @@ import androidx.appcompat.widget.AppCompatTextView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.example.weatherapp.R;
 import com.example.weatherapp.model.CurrentWeather;
@@ -43,19 +42,19 @@ public class HomeFragment extends Fragment implements HomeContract.View {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_main, container, false);
+        return inflater.inflate(R.layout.fragment_home, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        RecyclerView recyclerView = view.findViewById(R.id.rv_fragment_main_forecast_daily);
+        RecyclerView recyclerView = view.findViewById(R.id.rv_fragment_home_forecast_daily);
         adapter = new DailyForecastRecyclerAdapter(dailyForecastItems, getContext());
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(adapter);
 
-        view.findViewById(R.id.button_fragment_main_more).setOnClickListener(new View.OnClickListener() {
+        view.findViewById(R.id.button_fragment_home_more).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (getActivity() instanceof OnButtonMoreClickListener) {
@@ -68,12 +67,12 @@ public class HomeFragment extends Fragment implements HomeContract.View {
 
     @Override
     public void setCurrentWeather(CurrentWeather currentWeather) {
-        ((AppCompatTextView) getView().findViewById(R.id.text_view_fragment_main_degrees_value))
+        ((AppCompatTextView) getView().findViewById(R.id.text_view_fragment_home_degrees_value))
                 .setText(String.valueOf(currentWeather.getTemperature().getMetric().getValue()));
-        ((AppCompatTextView) getView().findViewById(R.id.text_view_fragment_main_sign)).setText("+");
-        ((AppCompatTextView) getView().findViewById(R.id.text_view_fragment_main_weather_status))
+        ((AppCompatTextView) getView().findViewById(R.id.text_view_fragment_home_sign)).setText("+");
+        ((AppCompatTextView) getView().findViewById(R.id.text_view_fragment_home_weather_status))
                 .setText(currentWeather.getWeatherText());
-        ((AppCompatButton) getView().findViewById(R.id.button_fragment_main_aqi)).setText(getString(R.string.button_title_aqi,20));
+        ((AppCompatButton) getView().findViewById(R.id.button_fragment_home_aqi)).setText(getString(R.string.button_title_aqi, 20));
     }
 
     @Override

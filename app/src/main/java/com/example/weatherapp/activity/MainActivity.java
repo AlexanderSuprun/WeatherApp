@@ -17,12 +17,14 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.weatherapp.R;
 import com.example.weatherapp.screen.home.HomeFragment;
+import com.example.weatherapp.utils.DialogUtil;
 import com.example.weatherapp.utils.adapter.ViewPagerAdapter;
 
 public class MainActivity extends AppCompatActivity implements HomeFragment.OnButtonMoreClickListener,
     MainContract.View {
 
     public static final int LOCATION_REQUEST_CODE = 142;
+    private final DialogUtil dialogUtil = new DialogUtil(this);
     private MainContract.Presenter presenter;
     private SwipeRefreshLayout swipeRefreshLayout;
     private ViewPager2 viewPager;
@@ -39,7 +41,7 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnBu
                     == PackageManager.PERMISSION_GRANTED) {
                 presenter.updateData();
             } else if (shouldShowRequestPermissionRationale(Manifest.permission.ACCESS_FINE_LOCATION)) {
-                showMessageRationale();
+                dialogUtil.showMessageRationale();
             } else {
                 requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, LOCATION_REQUEST_CODE);
             }
@@ -68,12 +70,12 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnBu
 
     @Override
     public void setCity(String city) {
-        ((AppCompatTextView) findViewById(R.id.text_view_fragment_main_city)).setText(city);
+        ((AppCompatTextView) findViewById(R.id.text_view_fragment_home_city)).setText(city);
     }
 
     @Override
     public void showMessageEnableGPS() {
-        showEnableGPSDialog();
+        dialogUtil.showEnableGPSDialog().show();
     }
 
     @Override
@@ -93,47 +95,9 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnBu
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 presenter.updateData();
             } else if (shouldShowRequestPermissionRationale(Manifest.permission.ACCESS_FINE_LOCATION)) {
-                showMessageRationale();
+                dialogUtil.showMessageRationale().show();
             }
         }
-    }
-
-    private void showEnableGPSDialog() {
-        new AlertDialog.Builder(MainActivity.this)
-                .setMessage(R.string.alert_message_enable_gps)
-                .setPositiveButton(getString(R.string.button_title_close), new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                })
-                .setOnDismissListener(new DialogInterface.OnDismissListener() {
-                    @Override
-                    public void onDismiss(DialogInterface dialog) {
-                        dialog.dismiss();
-                    }
-                })
-                .create()
-                .show();
-    }
-
-    public void showMessageRationale() {
-        new AlertDialog.Builder(MainActivity.this)
-                .setMessage(R.string.rationale_message)
-                .setPositiveButton(getString(R.string.button_title_allow), new DialogInterface.OnClickListener() {
-
-                    @RequiresApi(api = Build.VERSION_CODES.M)
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, LOCATION_REQUEST_CODE);
-                    }
-                })
-                .setNegativeButton(getString(R.string.button_title_cancel), new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                }).create().show();
     }
 
     @Override
