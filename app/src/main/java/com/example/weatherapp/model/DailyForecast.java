@@ -43,14 +43,14 @@ public class DailyForecast {
         this.forecast = forecast;
     }
 
-    private static class Temperature {
+    public static class Temperature {
         @SerializedName("Minimum")
         Metric metricMin;
         @SerializedName("Maximum")
         Metric metricMax;
     }
 
-    private static class Day {
+    public static class Day {
         @SerializedName("IconPhrase")
         String forecast;
         @SerializedName("HasPrecipitation")

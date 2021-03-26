@@ -109,23 +109,55 @@ public class CurrentWeather {
         this.pressure = pressure;
     }
 
-    private static class Wind {
+    public static class Wind {
         @SerializedName("Speed")
         Speed speed;
+
+        public Speed getSpeed() {
+            return speed;
+        }
+
+        public void setSpeed(Speed speed) {
+            this.speed = speed;
+        }
     }
 
-    private static class Speed {
+    public static class Speed {
         @SerializedName("Value")
         Metric metric;
+
+        public Metric getMetric() {
+            return metric;
+        }
+
+        public void setMetric(Metric metric) {
+            this.metric = metric;
+        }
     }
 
-    private static class Pressure {
+    public static class Pressure {
         @SerializedName("Metric")
         Metric metric;
+
+        public Metric getMetric() {
+            return metric;
+        }
+
+        public void setMetric(Metric metric) {
+            this.metric = metric;
+        }
     }
 
-    private static class Temperature {
+    public static class Temperature {
         @SerializedName("Metric")
         Metric metric;
+
+        public Metric getMetric() {
+            return metric;
+        }
+
+        public void setMetric(Metric metric) {
+            this.metric = metric;
+        }
     }
 }

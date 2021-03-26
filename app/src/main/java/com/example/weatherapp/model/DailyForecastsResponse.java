@@ -7,4 +7,12 @@ import java.util.List;
 public class DailyForecastsResponse {
     @SerializedName("DailyForecasts")
     List<DailyForecast> forecasts;
+
+    public List<DailyForecast> getForecasts() {
+        return forecasts;
+    }
+
+    public void setForecasts(List<DailyForecast> forecasts) {
+        this.forecasts = forecasts;
+    }
 }

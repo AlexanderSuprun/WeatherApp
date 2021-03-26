@@ -16,11 +16,11 @@ interface HomeContract {
 
     interface Presenter {
 
-        void setView(HomeContract.View view);
-
         void dropView();
 
         void requestDailyForecast(int locationKey);
+
+        void requestCurrentWeather(int locationKey);
 
     }
 }
