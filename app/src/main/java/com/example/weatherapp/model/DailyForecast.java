@@ -59,8 +59,3 @@ public class DailyForecast {
         String precipitationType;
     }
 }
-
-class DailyForecasts {
-    @SerializedName("DailyForecasts")
-    List<DailyForecast> forecasts;
-}

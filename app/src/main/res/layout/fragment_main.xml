@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg_main_fragment"
-    tools:context=".screen.main.MainFragment">
+    tools:context=".screen.home.HomeFragment">
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/text_view_fragment_main_city"

@@ -1,4 +1,4 @@
-package com.example.weatherapp.screen.main;
+package com.example.weatherapp.screen.home;
 
 import android.os.Bundle;
 
@@ -21,16 +21,16 @@ import com.example.weatherapp.utils.adapter.DailyForecastRecyclerAdapter;
 import java.util.ArrayList;
 
 
-public class MainFragment extends Fragment {
+public class HomeFragment extends Fragment {
 
-    public MainFragment() {
+    public HomeFragment() {
         // Required empty public constructor
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        // TODO: Create presenters in fragments
     }
 
     @Override
@@ -58,8 +58,8 @@ public class MainFragment extends Fragment {
 //        dailyForecastItems.add(new DailyForecast(getString(R.string.day_wednesday), getString(R.string.weather_rain), +3, -2));
 //        dailyForecastItems.add(new DailyForecast(getString(R.string.day_thursday), getString(R.string.weather_sunny), +6, +2));
 
-        recyclerView.setAdapter(new DailyForecastRecyclerAdapter(dailyForecastItems, getContext()));
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView.setAdapter(new DailyForecastRecyclerAdapter(dailyForecastItems, getContext()));
 
         view.findViewById(R.id.button_fragment_main_more).setOnClickListener(new View.OnClickListener() {
             @Override

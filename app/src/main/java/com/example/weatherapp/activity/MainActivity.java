@@ -1,14 +1,10 @@
-package com.example.weatherapp.screen;
+package com.example.weatherapp.activity;
 
 import android.Manifest;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
-import android.location.Address;
-import android.location.Geocoder;
-import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
-import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -20,19 +16,14 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.weatherapp.R;
-import com.example.weatherapp.screen.main.MainFragment;
-import com.example.weatherapp.utils.LocationRequestManager;
+import com.example.weatherapp.screen.home.HomeFragment;
 import com.example.weatherapp.utils.adapter.ViewPagerAdapter;
 
-import java.io.IOException;
-import java.util.List;
-import java.util.Locale;
-
-public class MainActivity extends AppCompatActivity implements MainFragment.OnButtonMoreClickListener,
-        LocationRequestManager.OnLocationResultListener {
+public class MainActivity extends AppCompatActivity implements HomeFragment.OnButtonMoreClickListener,
+    MainContract.View {
 
     public static final int LOCATION_REQUEST_CODE = 142;
-    private final LocationRequestManager locationRequestManager = new LocationRequestManager(MainActivity.this);
+    private MainContract.Presenter presenter;
     private SwipeRefreshLayout swipeRefreshLayout;
     private ViewPager2 viewPager;
 
@@ -40,27 +31,28 @@ public class MainActivity extends AppCompatActivity implements MainFragment.OnBu
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        presenter = new MainPresenter(MainActivity.this);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
 
             if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
                     == PackageManager.PERMISSION_GRANTED) {
-                locationRequestManager.requestLocation();
+                presenter.updateData();
             } else if (shouldShowRequestPermissionRationale(Manifest.permission.ACCESS_FINE_LOCATION)) {
-                locationRequestManager.showMessageRationale(MainActivity.class);
+                showMessageRationale();
             } else {
                 requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, LOCATION_REQUEST_CODE);
             }
 
         } else {
-            locationRequestManager.requestLocation();
+            presenter.updateData();
         }
 
         swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh_activity_main_container);
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                locationRequestManager.requestLocation();
+                presenter.updateData();
             }
         });
 
@@ -69,22 +61,29 @@ public class MainActivity extends AppCompatActivity implements MainFragment.OnBu
     }
 
     @Override
-    public void onLocationResult(Location result) {
-        if (result != null) {
-            String city = getCityAndCountry(result.getLatitude(), result.getLongitude())[0];
-            if (!TextUtils.isEmpty(city)) {
-                ((AppCompatTextView) findViewById(R.id.text_view_fragment_main_city)).setText(city);
-            }
-        } else {
-            showMessageEnableGPS();
-        }
-        swipeRefreshLayout.setRefreshing(false);
+    protected void onDestroy() {
+        super.onDestroy();
+        presenter.dropView();
     }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        locationRequestManager.clearActivity();
+    public void setCity(String city) {
+        ((AppCompatTextView) findViewById(R.id.text_view_fragment_main_city)).setText(city);
+    }
+
+    @Override
+    public void showMessageEnableGPS() {
+        showEnableGPSDialog();
+    }
+
+    @Override
+    public void showProgress() {
+
+    }
+
+    @Override
+    public void hideProgress() {
+        swipeRefreshLayout.setRefreshing(false);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -92,14 +91,14 @@ public class MainActivity extends AppCompatActivity implements MainFragment.OnBu
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         if (requestCode == LOCATION_REQUEST_CODE) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                locationRequestManager.requestLocation();
+                presenter.updateData();
             } else if (shouldShowRequestPermissionRationale(Manifest.permission.ACCESS_FINE_LOCATION)) {
-                locationRequestManager.showMessageRationale(MainActivity.class);
+                showMessageRationale();
             }
         }
     }
 
-    private void showMessageEnableGPS() {
+    private void showEnableGPSDialog() {
         new AlertDialog.Builder(MainActivity.this)
                 .setMessage(R.string.alert_message_enable_gps)
                 .setPositiveButton(getString(R.string.button_title_close), new DialogInterface.OnClickListener() {
@@ -118,20 +117,23 @@ public class MainActivity extends AppCompatActivity implements MainFragment.OnBu
                 .show();
     }
 
-    // Returns city and country code in String array
-    private String[] getCityAndCountry(double latitude, double longitude) {
-        Geocoder geocoder = new Geocoder(MainActivity.this, Locale.getDefault());
-        String[] result = new String[2];
-        try {
-            List<Address> addresses = geocoder.getFromLocation(latitude, longitude, 1);
-            if (addresses.size() > 0) {
-                result[0] = addresses.get(0).getLocality();
-                result[1] = addresses.get(0).getCountryCode();
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return result;
+    public void showMessageRationale() {
+        new AlertDialog.Builder(MainActivity.this)
+                .setMessage(R.string.rationale_message)
+                .setPositiveButton(getString(R.string.button_title_allow), new DialogInterface.OnClickListener() {
+
+                    @RequiresApi(api = Build.VERSION_CODES.M)
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, LOCATION_REQUEST_CODE);
+                    }
+                })
+                .setNegativeButton(getString(R.string.button_title_cancel), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                }).create().show();
     }
 
     @Override

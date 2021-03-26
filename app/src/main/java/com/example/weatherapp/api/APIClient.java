@@ -8,26 +8,31 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class APIClient {
 
     public static final String BASE_URL = "http://dataservice.accuweather.com";
-    private static APIClient serviceInstance;
-    private Retrofit retrofit;
+    private static APIClient client;
+    private final APIInterface apiInterface;
 
     private APIClient() {
         OkHttpClient client = new OkHttpClient.Builder()
                 .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+                .addInterceptor(new WeatherInterceptor())
                 .build();
 
-        retrofit = new Retrofit.Builder()
+        Retrofit retrofit = new Retrofit.Builder()
                 .client(client)
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-
+        apiInterface = retrofit.create(APIInterface.class);
     }
 
     public static APIClient getInstance() {
-        if (serviceInstance == null) {
-            serviceInstance = new APIClient();
+        if (client == null) {
+            client = new APIClient();
         }
-        return serviceInstance;
+        return client;
+    }
+
+    public APIInterface getApiInterface() {
+        return apiInterface;
     }
 }

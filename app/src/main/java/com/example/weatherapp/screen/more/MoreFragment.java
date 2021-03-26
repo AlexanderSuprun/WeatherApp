@@ -68,7 +68,7 @@ public class MoreFragment extends Fragment {
 //        hourlyForecastItems.add(new HourlyForecast(getString(R.string.time_15_00), getString(R.string.weather_rain), getString(R.string.wind_direction_s), 6, 3.5f));
 //        hourlyForecastItems.add(new HourlyForecast(getString(R.string.time_16_00), getString(R.string.weather_sunny), getString(R.string.wind_direction_se), 4, 2.1f));
 
-        recyclerView.setAdapter(new HourlyForecastRecyclerAdapter(hourlyForecastItems, getContext()));
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+        recyclerView.setAdapter(new HourlyForecastRecyclerAdapter(hourlyForecastItems, getContext()));
     }
 }

@@ -5,7 +5,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-import com.example.weatherapp.screen.main.MainFragment;
+import com.example.weatherapp.screen.home.HomeFragment;
 import com.example.weatherapp.screen.more.MoreFragment;
 
 
@@ -20,11 +20,11 @@ public class ViewPagerAdapter extends FragmentStateAdapter {
     public Fragment createFragment(int position) {
         switch (position) {
             case 0:
-                return new MainFragment();
+                return new HomeFragment();
             case 1:
                 return new MoreFragment();
         }
-        return new MainFragment();
+        return new HomeFragment();
     }
 
     @Override

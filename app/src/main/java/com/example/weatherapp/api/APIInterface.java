@@ -1,7 +1,7 @@
 package com.example.weatherapp.api;
 
 import com.example.weatherapp.model.CurrentWeather;
-import com.example.weatherapp.model.DailyForecast;
+import com.example.weatherapp.model.DailyForecastsResponse;
 import com.example.weatherapp.model.HourlyForecast;
 import com.example.weatherapp.model.LocationResponse;
 
@@ -17,25 +17,21 @@ public interface APIInterface {
 
     @GET("/locations/v1/cities/geoposition/search")
     Call<LocationResponse> getLocationKey(
-            @Query("apikey") String apikey,
             @Query("q") String coordinates);
 
     @GET("/currentconditions/v1/{locationKey}}")
     Call<CurrentWeather> getCurrentWeather(
-            @Query("apikey") String apikey,
             @Path("locationKey") int locationKey,
             @Query("metric") boolean metric,
             @Query("details") boolean details);
 
     @GET("/forecasts/v1/daily/5day/{locationKey}")
-    Call<List<DailyForecast>> get5DaysForecast(
-            @Query("apikey") String apikey,
+    Call<DailyForecastsResponse> get5DaysForecast(
             @Path("locationKey") int locationKey,
             @Query("metric") boolean metric);
 
     @GET("/forecasts/v1/hourly/12hour/{locationKey}")
     Call<List<HourlyForecast>> get12HoursForecast(
-            @Query("apikey") String apikey,
             @Query("locationKey") int locationKey,
             @Query("metric") boolean metric,
             @Query("details") boolean details);
