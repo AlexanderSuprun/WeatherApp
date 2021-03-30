@@ -2,14 +2,7 @@ package com.example.weatherapp.activity;
 
 import android.location.Location;
 
-import com.example.weatherapp.model.CurrentWeather;
-import com.example.weatherapp.model.DailyForecastsResponse;
-import com.example.weatherapp.model.HourlyForecast;
-import com.example.weatherapp.model.LocationResponse;
-
-import java.util.List;
-
-interface MainContract {
+public interface MainContract {
 
     interface View {
 
@@ -32,13 +25,13 @@ interface MainContract {
 
     interface Repository {
 
-        LocationResponse requestLocationKey(Location location, MainRepository.OnLocationKeyResult locationKeyResult);
+        void requestLocationKey(Location location, MainRepository.OnLocationKeyResult onLocationKeyResult);
 
-        CurrentWeather requestCurrentWeather();
+        void requestCurrentWeather(MainRepository.OnCurrentWeatherResult onCurrentWeatherResult);
 
-        DailyForecastsResponse requestDailyForecasts();
+        void requestDailyForecasts(MainRepository.OnDailyForecastsResult onDailyForecastsResult);
 
-        List<HourlyForecast> requestHourlyForecasts();
+        void requestHourlyForecasts(MainRepository.OnHourlyForecastsResult onHourlyForecastsResult);
 
     }
 }

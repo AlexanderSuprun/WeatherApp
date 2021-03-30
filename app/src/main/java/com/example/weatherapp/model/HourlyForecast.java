@@ -8,14 +8,17 @@ public class HourlyForecast {
     private int epochTime;
     @SerializedName("IconPhrase")
     private String forecast;
+    @SerializedName("PrecipitationProbability")
+    private int precipProbability;
     @SerializedName("Temperature")
     private Temperature temperature;
     @SerializedName("Wind")
     private Wind wind;
 
-    public HourlyForecast(int epochTime, String forecast, Temperature temperature, Wind wind) {
+    public HourlyForecast(int epochTime, String forecast, int precipProbability, Temperature temperature, Wind wind) {
         this.epochTime = epochTime;
         this.forecast = forecast;
+        this.precipProbability = precipProbability;
         this.temperature = temperature;
         this.wind = wind;
     }
@@ -36,8 +39,8 @@ public class HourlyForecast {
         this.forecast = forecast;
     }
 
-    public Temperature getTemperature() {
-        return temperature;
+    public float getTemperature() {
+        return temperature.metric.getValue();
     }
 
     public void setTemperature(Temperature temperature) {
@@ -52,76 +55,46 @@ public class HourlyForecast {
         this.wind = wind;
     }
 
+    public int getPrecipProbability() {
+        return precipProbability;
+    }
+
+    public void setPrecipProbability(int precipProbability) {
+        this.precipProbability = precipProbability;
+    }
+
     public static class Wind {
         @SerializedName("Speed")
         Speed speed;
         @SerializedName("Direction")
         Direction direction;
 
-        public Speed getSpeed() {
-            return speed;
+        public float getSpeed() {
+            return speed.speed;
         }
 
-        public void setSpeed(Speed speed) {
-            this.speed = speed;
+        public String getDirection() {
+            return direction.direction;
         }
 
-        public Direction getDirection() {
-            return direction;
-        }
-
-        public void setDirection(Direction direction) {
-            this.direction = direction;
-        }
     }
 
-    public static class Speed {
+    static class Speed {
         @SerializedName("Value")
         float speed;
         @SerializedName("Unit")
         String unit;
-
-        public float getSpeed() {
-            return speed;
-        }
-
-        public void setSpeed(float speed) {
-            this.speed = speed;
-        }
-
-        public String getUnit() {
-            return unit;
-        }
-
-        public void setUnit(String unit) {
-            this.unit = unit;
-        }
     }
 
-    public static class Direction {
+    static class Direction {
         @SerializedName("English")
         String direction;
 
-        public String getDirection() {
-            return direction;
-        }
-
-        public void setDirection(String direction) {
-            this.direction = direction;
-        }
     }
 
-    public static class Temperature {
+    static class Temperature {
         @SerializedName("Metric")
         Metric metric;
-
-        public Metric getMetric() {
-            return metric;
-        }
-
-        public void setMetric(Metric metric) {
-            this.metric = metric;
-        }
     }
 
 }

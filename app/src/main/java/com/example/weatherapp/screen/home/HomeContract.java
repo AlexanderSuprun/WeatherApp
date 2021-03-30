@@ -5,22 +5,24 @@ import com.example.weatherapp.model.DailyForecast;
 
 import java.util.List;
 
-interface HomeContract {
+public interface HomeContract {
 
     interface View {
 
         void setCurrentWeather(CurrentWeather currentWeather);
 
         void setDailyForecasts(List<DailyForecast> dailyForecastList);
+
+        HomeContract.Presenter getPresenter();
     }
 
     interface Presenter {
 
         void dropView();
 
-        void getDailyForecasts();
+        void updateDailyForecasts();
 
-        void getCurrentWeather();
+        void updateCurrentWeather(CurrentWeather currentWeather);
 
     }
 }

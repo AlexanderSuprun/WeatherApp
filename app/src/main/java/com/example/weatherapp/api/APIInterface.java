@@ -19,8 +19,8 @@ public interface APIInterface {
     Call<LocationResponse> getLocationKey(
             @Query("q") String coordinates);
 
-    @GET("/currentconditions/v1/{locationKey}}")
-    Call<CurrentWeather> getCurrentWeather(
+    @GET("/currentconditions/v1/{locationKey}")
+    Call<List<CurrentWeather>> getCurrentWeather(
             @Path("locationKey") int locationKey,
             @Query("metric") boolean metric,
             @Query("details") boolean details);

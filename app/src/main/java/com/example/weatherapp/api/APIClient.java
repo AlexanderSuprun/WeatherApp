@@ -1,5 +1,12 @@
 package com.example.weatherapp.api;
 
+import com.example.weatherapp.model.HourlyForecast;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
+
+import java.util.ArrayList;
+
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
@@ -16,6 +23,10 @@ public class APIClient {
                 .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
                 .addInterceptor(new WeatherInterceptor())
                 .build();
+
+//        Gson gson = new GsonBuilder()
+//                .registerTypeAdapter(new TypeToken<ArrayList<HourlyForecast>>(){}.getType(), HourlyForecast.class)
+//                .create();
 
         Retrofit retrofit = new Retrofit.Builder()
                 .client(client)

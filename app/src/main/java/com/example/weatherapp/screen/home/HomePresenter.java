@@ -3,9 +3,12 @@ package com.example.weatherapp.screen.home;
 import com.example.weatherapp.activity.MainRepository;
 import com.example.weatherapp.api.APIClient;
 import com.example.weatherapp.model.CurrentWeather;
+import com.example.weatherapp.model.DailyForecast;
 import com.example.weatherapp.model.DailyForecastsResponse;
 
 import org.jetbrains.annotations.NotNull;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -20,13 +23,13 @@ public class HomePresenter implements HomeContract.Presenter {
     }
 
     @Override
-    public void getDailyForecasts() {
-        view.setDailyForecasts(MainRepository.getInstance().requestDailyForecasts().getForecasts());
+    public void updateDailyForecasts() {
+        MainRepository.getInstance().requestDailyForecasts(dailyForecastList -> view.setDailyForecasts(dailyForecastList));
     }
 
     @Override
-    public void getCurrentWeather() {
-        view.setCurrentWeather(MainRepository.getInstance().requestCurrentWeather());
+    public void updateCurrentWeather(CurrentWeather currentWeather) {
+        view.setCurrentWeather(currentWeather);
     }
 
     @Override

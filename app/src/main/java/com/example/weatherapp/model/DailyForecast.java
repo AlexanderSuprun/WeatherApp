@@ -48,14 +48,63 @@ public class DailyForecast {
         Metric metricMin;
         @SerializedName("Maximum")
         Metric metricMax;
+
+        public Metric getMetricMin() {
+            return metricMin;
+        }
+
+        public void setMetricMin(Metric metricMin) {
+            this.metricMin = metricMin;
+        }
+
+        public Metric getMetricMax() {
+            return metricMax;
+        }
+
+        public void setMetricMax(Metric metricMax) {
+            this.metricMax = metricMax;
+        }
     }
 
     public static class Day {
+        int iconNumber;
         @SerializedName("IconPhrase")
         String forecast;
         @SerializedName("HasPrecipitation")
         boolean hasPrecipitation;
         @SerializedName("PrecipitationType")
         String precipitationType;
+
+        public int getIconNumber() {
+            return iconNumber;
+        }
+
+        public void setIconNumber(int iconNumber) {
+            this.iconNumber = iconNumber;
+        }
+
+        public String getForecast() {
+            return forecast;
+        }
+
+        public void setForecast(String forecast) {
+            this.forecast = forecast;
+        }
+
+        public boolean isHasPrecipitation() {
+            return hasPrecipitation;
+        }
+
+        public void setHasPrecipitation(boolean hasPrecipitation) {
+            this.hasPrecipitation = hasPrecipitation;
+        }
+
+        public String getPrecipitationType() {
+            return precipitationType;
+        }
+
+        public void setPrecipitationType(String precipitationType) {
+            this.precipitationType = precipitationType;
+        }
     }
 }

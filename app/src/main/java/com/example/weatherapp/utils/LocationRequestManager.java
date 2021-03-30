@@ -13,14 +13,9 @@ public class LocationRequestManager {
     private final OnLocationResultListener listener;
     private Activity activity;
 
-    public LocationRequestManager(Activity activity) {
-        if (activity instanceof OnLocationResultListener) {
-            this.activity = activity;
-            this.listener = (OnLocationResultListener) activity;
-        } else {
-            throw new ClassCastException(getClass().toString()
-                    + " must implement OnLocationResultListener");
-        }
+    public LocationRequestManager(Activity activity, OnLocationResultListener listener) {
+        this.activity = activity;
+        this.listener = listener;
     }
 
     // Call only if location permission granted

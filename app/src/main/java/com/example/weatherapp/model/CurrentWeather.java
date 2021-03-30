@@ -37,16 +37,16 @@ public class CurrentWeather {
         this.pressure = pressure;
     }
 
-    public Temperature getTemperature() {
-        return temperature;
+    public float getTemperature() {
+        return temperature.metric.getValue();
     }
 
     public void setTemperature(Temperature temperature) {
         this.temperature = temperature;
     }
 
-    public Temperature getRealFeelTemperature() {
-        return realFeelTemperature;
+    public float getRealFeelTemperature() {
+        return realFeelTemperature.metric.getValue();
     }
 
     public void setRealFeelTemperature(Temperature realFeelTemperature) {
@@ -85,8 +85,8 @@ public class CurrentWeather {
         this.humidity = humidity;
     }
 
-    public Wind getWind() {
-        return wind;
+    public float getWindSpeed() {
+        return wind.speed.metric.getValue();
     }
 
     public void setWind(Wind wind) {
@@ -101,63 +101,31 @@ public class CurrentWeather {
         this.uvIndex = uvIndex;
     }
 
-    public Pressure getPressure() {
-        return pressure;
+    public float getPressureValue() {
+        return pressure.metric.getValue();
     }
 
     public void setPressure(Pressure pressure) {
         this.pressure = pressure;
     }
 
-    public static class Wind {
+    static class Wind {
         @SerializedName("Speed")
         Speed speed;
-
-        public Speed getSpeed() {
-            return speed;
-        }
-
-        public void setSpeed(Speed speed) {
-            this.speed = speed;
-        }
     }
 
-    public static class Speed {
-        @SerializedName("Value")
-        Metric metric;
-
-        public Metric getMetric() {
-            return metric;
-        }
-
-        public void setMetric(Metric metric) {
-            this.metric = metric;
-        }
-    }
-
-    public static class Pressure {
+    static class Speed {
         @SerializedName("Metric")
         Metric metric;
-
-        public Metric getMetric() {
-            return metric;
-        }
-
-        public void setMetric(Metric metric) {
-            this.metric = metric;
-        }
     }
 
-    public static class Temperature {
+    static class Pressure {
         @SerializedName("Metric")
         Metric metric;
+    }
 
-        public Metric getMetric() {
-            return metric;
-        }
-
-        public void setMetric(Metric metric) {
-            this.metric = metric;
-        }
+    static class Temperature {
+        @SerializedName("Metric")
+        Metric metric;
     }
 }

@@ -24,8 +24,8 @@ import java.util.List;
 
 public class HomeFragment extends Fragment implements HomeContract.View {
 
-    private HomeContract.Presenter presenter;
-    private ArrayList<DailyForecast> dailyForecastItems;
+    private final HomeContract.Presenter presenter = new HomePresenter(this);
+    private final ArrayList<DailyForecast> dailyForecastItems = new ArrayList<>();
     private DailyForecastRecyclerAdapter adapter;
 
     public HomeFragment() {
@@ -35,7 +35,6 @@ public class HomeFragment extends Fragment implements HomeContract.View {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        presenter = new HomePresenter(this);
     }
 
     @Override
@@ -66,20 +65,34 @@ public class HomeFragment extends Fragment implements HomeContract.View {
     }
 
     @Override
+    public void onDetach() {
+        super.onDetach();
+        presenter.dropView();
+    }
+
+    @Override
+    public HomeContract.Presenter getPresenter() {
+        return presenter;
+    }
+
+    @Override
     public void setCurrentWeather(CurrentWeather currentWeather) {
         ((AppCompatTextView) getView().findViewById(R.id.text_view_fragment_home_degrees_value))
-                .setText(String.valueOf(currentWeather.getTemperature().getMetric().getValue()));
+                .setText(String.valueOf(currentWeather.getTemperature()));
         ((AppCompatTextView) getView().findViewById(R.id.text_view_fragment_home_sign)).setText("+");
         ((AppCompatTextView) getView().findViewById(R.id.text_view_fragment_home_weather_status))
                 .setText(currentWeather.getWeatherText());
+        // TODO: Replace with something else
         ((AppCompatButton) getView().findViewById(R.id.button_fragment_home_aqi)).setText(getString(R.string.button_title_aqi, 20));
     }
 
     @Override
     public void setDailyForecasts(List<DailyForecast> dailyForecastList) {
+        dailyForecastItems.clear();
         dailyForecastItems.addAll(dailyForecastList);
         adapter.notifyDataSetChanged();
     }
+
 
     public interface OnButtonMoreClickListener {
         void onButtonClick();

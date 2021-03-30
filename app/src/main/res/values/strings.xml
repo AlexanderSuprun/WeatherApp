@@ -14,8 +14,8 @@
     <string name="content_description_daily_forecast">Weather forecast</string>
     <string name="content_description_hourly_forecast">Weather forecast</string>
     <string name="current_weather">Current weather</string>
-    <string name="rv_daily_forecast_item_degrees_day">%d&#176;</string>
-    <string name="rv_daily_forecast_item_degrees_night">%d&#176;</string>
+    <string name="rv_daily_forecast_item_degrees_max">%d&#176;</string>
+    <string name="rv_daily_forecast_item_degrees_min">%d&#176;</string>
     <string name="rv_hourly_forecast_item_degrees">%d&#176;</string>
     <string name="middle_dot">&#183;</string>
     <string name="slash">&#47;</string>

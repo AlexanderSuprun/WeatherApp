@@ -12,13 +12,17 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.weatherapp.R;
 import com.example.weatherapp.model.HourlyForecast;
+import com.example.weatherapp.utils.Utils;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Locale;
 
 public class HourlyForecastRecyclerAdapter extends RecyclerView.Adapter<HourlyForecastRecyclerAdapter.ViewHolder> {
 
     private final ArrayList<HourlyForecast> hourlyForecastItems;
     private final Context context;
+    private final Calendar calendar = Calendar.getInstance(Locale.getDefault());
 
     public HourlyForecastRecyclerAdapter(ArrayList<HourlyForecast> hourlyForecastItems, Context context) {
         this.hourlyForecastItems = hourlyForecastItems;
@@ -35,30 +39,11 @@ public class HourlyForecastRecyclerAdapter extends RecyclerView.Adapter<HourlyFo
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         HourlyForecast item = hourlyForecastItems.get(position);
-
-        // add more cases for other forecasts
-        switch (item.getForecast()) {
-            case "Sunny":
-                holder.iconForecast.setImageResource(R.drawable.ic_sun);
-                break;
-            case "Cloudy":
-                holder.iconForecast.setImageResource(R.drawable.ic_cloudy);
-                break;
-            case "Rain":
-                holder.iconForecast.setImageResource(R.drawable.ic_raining);
-        }
-
-        switch (item.getWindDirection()) {
-            case "SE":
-                holder.iconWindDirection.setImageResource(R.drawable.ic_wind_arrow_se);
-                break;
-            case "S":
-                holder.iconWindDirection.setImageResource(R.drawable.ic_wind_arrow_s);
-        }
-
-        holder.time.setText(item.getEpochTime());
+        calendar.setTimeInMillis(item.getEpochTime());
+        holder.iconWindDirection.setImageDrawable(Utils.getWindDirectionIcon(item.getWind().getDirection(), context));
+        holder.time.setText(calendar.get(Calendar.HOUR_OF_DAY));
         holder.temperature.setText(context.getString(R.string.rv_hourly_forecast_item_degrees, item.getTemperature()));
-        holder.windSpeed.setText(context.getString(R.string.rv_hourly_forecast_item_wind_speed, item.getWindSpeed()));
+        holder.windSpeed.setText(context.getString(R.string.rv_hourly_forecast_item_wind_speed, item.getWind().getSpeed()));
     }
 
     @Override

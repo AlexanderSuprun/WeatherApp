@@ -12,13 +12,17 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.weatherapp.R;
 import com.example.weatherapp.model.DailyForecast;
+import com.example.weatherapp.utils.Utils;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Locale;
 
 public class DailyForecastRecyclerAdapter extends RecyclerView.Adapter<DailyForecastRecyclerAdapter.ViewHolder> {
 
     private final ArrayList<DailyForecast> dailyForecastItems;
     private final Context context;
+    private final Calendar calendar = Calendar.getInstance(Locale.getDefault());
 
     public DailyForecastRecyclerAdapter(ArrayList<DailyForecast> dailyForecastItems, Context context) {
         this.dailyForecastItems = dailyForecastItems;
@@ -36,22 +40,14 @@ public class DailyForecastRecyclerAdapter extends RecyclerView.Adapter<DailyFore
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         DailyForecast item = dailyForecastItems.get(position);
 
-        // add more cases for other forecasts
-//        switch (item.getForecast()) {
-//            case "Sunny":
-//                holder.icon.setImageResource(R.drawable.ic_sun);
-//                break;
-//            case "Cloudy":
-//                holder.icon.setImageResource(R.drawable.ic_cloudy);
-//                break;
-//            case "Rain":
-//                holder.icon.setImageResource(R.drawable.ic_raining);
-//        }
-
-//        holder.day.setText(item.getDay());
-//        holder.forecast.setText(item.getForecast());
-//        holder.temperatureDay.setText(context.getString(R.string.rv_daily_forecast_item_degrees_day, item.getTemperatureMax()));
-//        holder.temperatureNight.setText(context.getString(R.string.rv_daily_forecast_item_degrees_night, item.getTemperatureMin()));
+        calendar.setTimeInMillis(item.getEpochDate());
+        holder.icon.setImageDrawable(Utils.getWeatherIcon(item.getForecast().getIconNumber(), context));
+        holder.day.setText(String.valueOf(calendar.get(Calendar.DAY_OF_WEEK)));
+        holder.forecast.setText(item.getForecast().getForecast());
+        holder.temperatureMax.setText(context.getString(R.string.rv_daily_forecast_item_degrees_max,
+                Math.round(item.getTemperature().getMetricMax().getValue())));
+        holder.temperatureMin.setText(context.getString(R.string.rv_daily_forecast_item_degrees_min,
+                Math.round(item.getTemperature().getMetricMin().getValue())));
     }
 
     @Override
@@ -64,8 +60,8 @@ public class DailyForecastRecyclerAdapter extends RecyclerView.Adapter<DailyFore
         AppCompatImageView icon;
         AppCompatTextView day;
         AppCompatTextView forecast;
-        AppCompatTextView temperatureDay;
-        AppCompatTextView temperatureNight;
+        AppCompatTextView temperatureMax;
+        AppCompatTextView temperatureMin;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -73,8 +69,8 @@ public class DailyForecastRecyclerAdapter extends RecyclerView.Adapter<DailyFore
             icon = itemView.findViewById(R.id.image_view_rv_daily_forecast_item_icon);
             day = itemView.findViewById(R.id.text_view_rv_daily_forecast_item_day_of_week);
             forecast = itemView.findViewById(R.id.text_view_rv_daily_forecast_item_forecast);
-            temperatureDay = itemView.findViewById(R.id.text_view_rv_daily_forecast_item_degrees_max);
-            temperatureNight = itemView.findViewById(R.id.text_view_rv_daily_forecast_item_degrees_min);
+            temperatureMax = itemView.findViewById(R.id.text_view_rv_daily_forecast_item_degrees_max);
+            temperatureMin = itemView.findViewById(R.id.text_view_rv_daily_forecast_item_degrees_min);
         }
     }
 
