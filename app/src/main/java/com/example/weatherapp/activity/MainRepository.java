@@ -108,7 +108,6 @@ public class MainRepository implements MainContract.Repository {
                                            @NotNull Response<List<HourlyForecast>> response) {
                         if (response.isSuccessful() && response.body() != null) {
                             onHourlyForecastsResult.onHourlyForecastsResult(response.body());
-                            Log.i("TAG_BODY", response.body().toString());
                         }
                     }
 

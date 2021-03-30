@@ -2,12 +2,10 @@ package com.example.weatherapp.model;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.util.List;
-
 public class DailyForecast {
 
     @SerializedName("EpochDate")
-    private int epochDate;
+    private long epochDate;
     @SerializedName("Temperature")
     private Temperature temperature;
     @SerializedName("Day")
@@ -19,11 +17,11 @@ public class DailyForecast {
         this.forecast = forecast;
     }
 
-    public int getEpochDate() {
+    public long getEpochDate() {
         return epochDate;
     }
 
-    public void setEpochDate(int epochDate) {
+    public void setEpochDate(long epochDate) {
         this.epochDate = epochDate;
     }
 

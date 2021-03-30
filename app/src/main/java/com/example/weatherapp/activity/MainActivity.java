@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -18,6 +19,9 @@ import com.example.weatherapp.R;
 import com.example.weatherapp.screen.home.HomeFragment;
 import com.example.weatherapp.utils.Utils;
 import com.example.weatherapp.utils.adapter.ViewPagerAdapter;
+
+import java.util.Calendar;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity implements HomeFragment.OnButtonMoreClickListener,
         MainContract.View {

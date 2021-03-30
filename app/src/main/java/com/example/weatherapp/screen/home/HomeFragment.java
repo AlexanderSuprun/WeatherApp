@@ -78,8 +78,8 @@ public class HomeFragment extends Fragment implements HomeContract.View {
     @Override
     public void setCurrentWeather(CurrentWeather currentWeather) {
         ((AppCompatTextView) getView().findViewById(R.id.text_view_fragment_home_degrees_value))
-                .setText(String.valueOf(currentWeather.getTemperature()));
-        ((AppCompatTextView) getView().findViewById(R.id.text_view_fragment_home_sign)).setText("+");
+                .setText(String.valueOf(Math.round(currentWeather.getTemperature())));
+//        ((AppCompatTextView) getView().findViewById(R.id.text_view_fragment_home_sign)).setText("+");
         ((AppCompatTextView) getView().findViewById(R.id.text_view_fragment_home_weather_status))
                 .setText(currentWeather.getWeatherText());
         // TODO: Replace with something else

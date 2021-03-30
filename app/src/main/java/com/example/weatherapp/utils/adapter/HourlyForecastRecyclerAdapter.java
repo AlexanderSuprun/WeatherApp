@@ -39,11 +39,19 @@ public class HourlyForecastRecyclerAdapter extends RecyclerView.Adapter<HourlyFo
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         HourlyForecast item = hourlyForecastItems.get(position);
-        calendar.setTimeInMillis(item.getEpochTime());
+        holder.iconForecast.setImageDrawable(Utils.getWeatherIcon(item.getIconNumber(), context));
         holder.iconWindDirection.setImageDrawable(Utils.getWindDirectionIcon(item.getWind().getDirection(), context));
-        holder.time.setText(calendar.get(Calendar.HOUR_OF_DAY));
-        holder.temperature.setText(context.getString(R.string.rv_hourly_forecast_item_degrees, item.getTemperature()));
-        holder.windSpeed.setText(context.getString(R.string.rv_hourly_forecast_item_wind_speed, item.getWind().getSpeed()));
+        holder.temperature.setText(context.getString(R.string.rv_hourly_forecast_item_degrees,
+                Math.round(item.getTemperature())));
+        holder.windSpeed.setText(context.getString(R.string.rv_hourly_forecast_item_wind_speed,
+                item.getWind().getSpeed()));
+
+        if (position == 0) {
+            holder.time.setText(context.getString(R.string.time_now));
+        } else {
+            calendar.setTimeInMillis(item.getEpochTime() * 1000);
+            holder.time.setText(context.getString(R.string.rv_hourly_forecast_item_time, calendar.get(Calendar.HOUR_OF_DAY)));
+        }
     }
 
     @Override

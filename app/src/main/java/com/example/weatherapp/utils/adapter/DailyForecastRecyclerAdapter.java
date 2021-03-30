@@ -40,14 +40,19 @@ public class DailyForecastRecyclerAdapter extends RecyclerView.Adapter<DailyFore
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         DailyForecast item = dailyForecastItems.get(position);
 
-        calendar.setTimeInMillis(item.getEpochDate());
         holder.icon.setImageDrawable(Utils.getWeatherIcon(item.getForecast().getIconNumber(), context));
-        holder.day.setText(String.valueOf(calendar.get(Calendar.DAY_OF_WEEK)));
         holder.forecast.setText(item.getForecast().getForecast());
         holder.temperatureMax.setText(context.getString(R.string.rv_daily_forecast_item_degrees_max,
                 Math.round(item.getTemperature().getMetricMax().getValue())));
         holder.temperatureMin.setText(context.getString(R.string.rv_daily_forecast_item_degrees_min,
                 Math.round(item.getTemperature().getMetricMin().getValue())));
+
+        if (position == 0) {
+            holder.day.setText(context.getString(R.string.day_today));
+        } else {
+            calendar.setTimeInMillis(item.getEpochDate() * 1000);
+            holder.day.setText(calendar.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.LONG, Locale.getDefault()));
+        }
     }
 
     @Override

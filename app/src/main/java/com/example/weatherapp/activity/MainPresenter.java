@@ -22,13 +22,11 @@ public class MainPresenter implements MainContract.Presenter, LocationRequestMan
 
     private final LocationRequestManager locationRequestManager;
     private MainContract.View view;
-    private final AppCompatActivity activity;
-    private HomeContract.Presenter homePresenter;
-    private MoreContract.Presenter morePresenter;
+    private final HomeContract.Presenter homePresenter;
+    private final MoreContract.Presenter morePresenter;
 
     public MainPresenter(AppCompatActivity activity, ViewPagerAdapter viewPagerAdapter) {
         this.view = (MainContract.View) activity;
-        this.activity = activity;
         this.homePresenter = viewPagerAdapter.getHomeFragment().getPresenter();
         this.morePresenter = viewPagerAdapter.getMoreFragment().getPresenter();
         locationRequestManager = new LocationRequestManager(activity, this);

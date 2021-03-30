@@ -62,13 +62,12 @@ public class MoreFragment extends Fragment implements MoreContract.View {
 
     @Override
     public void setHourlyForecast(List<HourlyForecast> hourlyForecastList) {
-        hourlyForecastList.clear();
+        hourlyForecastItems.clear();
         hourlyForecastItems.addAll(hourlyForecastList);
         adapter.notifyDataSetChanged();
-        Log.i("TAG_LIST", "" + hourlyForecastList.size());
-//        ((AppCompatTextView) getView().findViewById(R.id.text_view_fragment_more_value_chance_of_rain))
-//                .setText(getString(R.string.fragment_more_chance_of_rain_value,
-//                        hourlyForecastList.get(0).getPrecipProbability()));
+        ((AppCompatTextView) getView().findViewById(R.id.text_view_fragment_more_value_chance_of_rain))
+                .setText(getString(R.string.fragment_more_chance_of_rain_value,
+                        hourlyForecastList.get(0).getPrecipProbability()));
     }
 
     @Override

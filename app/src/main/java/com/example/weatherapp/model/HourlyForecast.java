@@ -5,7 +5,9 @@ import com.google.gson.annotations.SerializedName;
 public class HourlyForecast {
 
     @SerializedName("EpochDateTime")
-    private int epochTime;
+    private long epochTime;
+    @SerializedName("WeatherIcon")
+    private int iconNumber;
     @SerializedName("IconPhrase")
     private String forecast;
     @SerializedName("PrecipitationProbability")
@@ -15,19 +17,28 @@ public class HourlyForecast {
     @SerializedName("Wind")
     private Wind wind;
 
-    public HourlyForecast(int epochTime, String forecast, int precipProbability, Temperature temperature, Wind wind) {
+    public HourlyForecast(int epochTime, int iconNumber, String forecast, int precipProbability, Temperature temperature, Wind wind) {
         this.epochTime = epochTime;
+        this.iconNumber = iconNumber;
         this.forecast = forecast;
         this.precipProbability = precipProbability;
         this.temperature = temperature;
         this.wind = wind;
     }
 
-    public int getEpochTime() {
+    public int getIconNumber() {
+        return iconNumber;
+    }
+
+    public void setIconNumber(int iconNumber) {
+        this.iconNumber = iconNumber;
+    }
+
+    public long getEpochTime() {
         return epochTime;
     }
 
-    public void setEpochTime(int epochTime) {
+    public void setEpochTime(long epochTime) {
         this.epochTime = epochTime;
     }
 
@@ -40,7 +51,7 @@ public class HourlyForecast {
     }
 
     public float getTemperature() {
-        return temperature.metric.getValue();
+        return temperature.value;
     }
 
     public void setTemperature(Temperature temperature) {
@@ -93,8 +104,7 @@ public class HourlyForecast {
     }
 
     static class Temperature {
-        @SerializedName("Metric")
-        Metric metric;
+        @SerializedName("Value")
+        float value;
     }
-
 }
