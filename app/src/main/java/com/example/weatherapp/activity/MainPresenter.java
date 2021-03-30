@@ -58,6 +58,7 @@ public class MainPresenter implements MainContract.Presenter, LocationRequestMan
                         public void onCurrentWeatherResult(List<CurrentWeather> currentWeather) {
                             homePresenter.updateCurrentWeather(currentWeather.get(0));
                             morePresenter.updateCurrentWeatherDetails(currentWeather.get(0));
+                            view.hideProgress();
                         }
                     });
                     homePresenter.updateDailyForecasts();

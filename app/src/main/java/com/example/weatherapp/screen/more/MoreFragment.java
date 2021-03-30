@@ -1,7 +1,6 @@
 package com.example.weatherapp.screen.more;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,7 +24,7 @@ import java.util.List;
 public class MoreFragment extends Fragment implements MoreContract.View {
 
     private final MoreContract.Presenter presenter = new MorePresenter(this);
-    private ArrayList<HourlyForecast> hourlyForecastItems = new ArrayList<>();
+    private final ArrayList<HourlyForecast> hourlyForecastItems = new ArrayList<>();
     private HourlyForecastRecyclerAdapter adapter;
 
     public MoreFragment() {
