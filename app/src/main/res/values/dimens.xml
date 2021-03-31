@@ -19,4 +19,5 @@
     <dimen name="rv_hourly_forecast_item_width">88dp</dimen>
     <dimen name="rv_hourly_forecast_item_icon_height">24dp</dimen>
     <dimen name="rv_daily_forecast_height">184dp</dimen>
+    <dimen name="card_view_corner_radius">20dp</dimen>
 </resources>

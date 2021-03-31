@@ -10,8 +10,6 @@ public interface MainContract {
 
         void hideProgress();
 
-        void setCity(String city);
-
         void showMessageEnableGPS();
     }
 

@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.weatherapp.R;
 import com.example.weatherapp.model.CurrentWeather;
 import com.example.weatherapp.model.DailyForecast;
+import com.example.weatherapp.utils.Utils;
 import com.example.weatherapp.utils.adapter.DailyForecastRecyclerAdapter;
 
 import java.util.ArrayList;
@@ -53,13 +54,10 @@ public class HomeFragment extends Fragment implements HomeContract.View {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(adapter);
 
-        view.findViewById(R.id.button_fragment_home_more).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (getActivity() instanceof OnButtonMoreClickListener) {
-                    OnButtonMoreClickListener listener = (OnButtonMoreClickListener) getActivity();
-                    listener.onButtonClick();
-                }
+        view.findViewById(R.id.button_fragment_home_more).setOnClickListener(v -> {
+            if (getActivity() instanceof OnButtonMoreClickListener) {
+                OnButtonMoreClickListener listener = (OnButtonMoreClickListener) getActivity();
+                listener.onButtonClick();
             }
         });
     }
@@ -71,6 +69,11 @@ public class HomeFragment extends Fragment implements HomeContract.View {
     }
 
     @Override
+    public void setCity(String city) {
+        ((AppCompatTextView) getView().findViewById(R.id.text_view_fragment_home_city)).setText(city);
+    }
+
+    @Override
     public HomeContract.Presenter getPresenter() {
         return presenter;
     }
@@ -79,11 +82,13 @@ public class HomeFragment extends Fragment implements HomeContract.View {
     public void setCurrentWeather(CurrentWeather currentWeather) {
         ((AppCompatTextView) getView().findViewById(R.id.text_view_fragment_home_degrees_value))
                 .setText(String.valueOf(Math.round(currentWeather.getTemperature())));
-//        ((AppCompatTextView) getView().findViewById(R.id.text_view_fragment_home_sign)).setText("+");
         ((AppCompatTextView) getView().findViewById(R.id.text_view_fragment_home_weather_status))
                 .setText(currentWeather.getWeatherText());
-        // TODO: Replace with something else
-        ((AppCompatButton) getView().findViewById(R.id.button_fragment_home_aqi)).setText(getString(R.string.button_title_aqi, 20));
+        ((AppCompatButton) getView().findViewById(R.id.button_fragment_home_wind))
+                .setText(getString(R.string.value_wind_speed, currentWeather.getWindSpeed(), currentWeather.getWindUnit()));
+        ((AppCompatButton) getView().findViewById(R.id.button_fragment_home_wind))
+                .setCompoundDrawablesWithIntrinsicBounds(Utils.getWindDirectionIcon(currentWeather.getWindDirection(), getContext()),
+                        null, null, null);
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.example.weatherapp.utils.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,7 +42,7 @@ public class DailyForecastRecyclerAdapter extends RecyclerView.Adapter<DailyFore
         DailyForecast item = dailyForecastItems.get(position);
 
         holder.icon.setImageDrawable(Utils.getWeatherIcon(item.getForecast().getIconNumber(), context));
-        holder.forecast.setText(item.getForecast().getForecast());
+        holder.forecast.setText(Utils.getWeatherText(item.getForecast().getIconPhrase()));
         holder.temperatureMax.setText(context.getString(R.string.rv_daily_forecast_item_degrees_max,
                 Math.round(item.getTemperature().getMetricMax().getValue())));
         holder.temperatureMin.setText(context.getString(R.string.rv_daily_forecast_item_degrees_min,

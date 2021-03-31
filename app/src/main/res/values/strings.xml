@@ -26,7 +26,7 @@
     <string name="fragment_more_chance_of_rain_value">%d%%</string>
     <string name="title_chance_of_rain">Chance of rain</string>
     <string name="title_wind_speed">Wind speed</string>
-    <string name="fragment_more_value_wind_speed">%.1f km/h</string>
+    <string name="value_wind_speed">%.1f %s</string>
     <string name="title_humidity">Humidity</string>
     <string name="fragment_more_value_humidity">%d%%</string>
     <string name="title_pressure">Pressure</string>
@@ -36,12 +36,13 @@
     <string name="rationale_message">Allow positioning by GPS to locate your city</string>
     <string name="button_title_allow">Allow</string>
     <string name="button_title_cancel">Cancel</string>
+    <string name="button_title_enable">Enable</string>
     <string name="alert_message_enable_gps">Please enable GPS</string>
-    <string name="button_title_close">Close</string>
     <string name="day_today">Today</string>
     <string name="weather_sunny">Sunny</string>
     <string name="weather_cloudy">Cloudy</string>
     <string name="weather_rain">Rain</string>
     <string name="time_now">Now</string>
     <string name="rv_hourly_forecast_item_time">%d:00</string>
+    <string name="toast_network_unavailable">Can\'t connect to the network</string>
 </resources>

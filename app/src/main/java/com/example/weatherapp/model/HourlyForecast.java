@@ -100,7 +100,6 @@ public class HourlyForecast {
     static class Direction {
         @SerializedName("English")
         String direction;
-
     }
 
     static class Temperature {

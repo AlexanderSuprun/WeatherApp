@@ -4,15 +4,16 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.provider.Settings;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.ContextCompat;
 
 import com.example.weatherapp.R;
-import com.example.weatherapp.activity.MainActivity;
 
 import static com.example.weatherapp.activity.MainActivity.LOCATION_REQUEST_CODE;
 
@@ -21,37 +22,18 @@ public class Utils {
     public static AlertDialog showEnableGPSDialog(Activity activity) {
         return new AlertDialog.Builder(activity)
                 .setMessage(R.string.alert_message_enable_gps)
-                .setPositiveButton(activity.getString(R.string.button_title_close), new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                })
-                .setOnDismissListener(new DialogInterface.OnDismissListener() {
-                    @Override
-                    public void onDismiss(DialogInterface dialog) {
-                        dialog.dismiss();
-                    }
-                }).create();
+                .setPositiveButton(R.string.button_title_enable, (dialog, which) ->
+                        activity.startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)))
+                .setNegativeButton(R.string.button_title_cancel, (dialog, which) -> dialog.dismiss())
+                .setOnDismissListener(DialogInterface::dismiss).create();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     public static AlertDialog showMessageRationale(Activity activity) {
         return new AlertDialog.Builder(activity)
                 .setMessage(R.string.rationale_message)
-                .setPositiveButton(activity.getString(R.string.button_title_allow), new DialogInterface.OnClickListener() {
-
-                    @RequiresApi(api = Build.VERSION_CODES.M)
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        activity.requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, LOCATION_REQUEST_CODE);
-                    }
-                })
-                .setNegativeButton(activity.getString(R.string.button_title_cancel), new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                }).create();
+                .setPositiveButton(R.string.button_title_allow, (dialog, which) -> activity.requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, LOCATION_REQUEST_CODE))
+                .setNegativeButton(R.string.button_title_cancel, (dialog, which) -> dialog.dismiss()).create();
     }
 
     public static Drawable getWeatherIcon(int iconNumber, Context context) {
@@ -132,6 +114,58 @@ public class Utils {
                 return ContextCompat.getDrawable(context, R.drawable.ic_wind_arrow_nw);
             default:
                 return ContextCompat.getDrawable(context, R.drawable.ic_wind_arrow_n);
+        }
+    }
+
+    public static String getWeatherText(String iconPhrase) {
+        switch (iconPhrase) {
+            case "Sunny":
+            case "Mostly Sunny":
+            case "Partly Sunny":
+                return "Sunny";
+            case "Intermittent clouds":
+            case "Mostly cloudy":
+            case "Cloudy":
+                return "Cloudy";
+            case "Hazy Sunshine":
+                return "Hazy Sunshine";
+            case "Dreary (Overcast)":
+                return "Overcast";
+            case "Fog":
+                return "Fog";
+            case "Showers":
+            case "Mostly Cloudy w/ Showers":
+            case "Partly Sunny w/ Showers":
+                return "Showers";
+            case "T-Storms":
+            case "Mostly Cloudy w/ T-Storms":
+            case "Partly Sunny w/ T-Storms":
+                return "Thunderstorm";
+            case "Rain":
+                return "Rain";
+            case "Flurries":
+            case "Mostly Cloudy w/ Flurries":
+            case "Partly Sunny w/ Flurries":
+                return "Flurry";
+            case "Snow":
+            case "Mostly Cloudy w/ Snow":
+                return "Snow";
+            case "Ice":
+                return "Ice";
+            case "Sleet":
+                return "Sleet";
+            case "Freezing Rain":
+                return "Cold Rain";
+            case "Rain and Snow":
+                return "Rain & Snow";
+            case "Hot":
+                return "Hot";
+            case "Cold":
+                return "Cold";
+            case "Windy":
+                return "Windy";
+            default:
+                return "Undefined";
         }
     }
 }

@@ -75,8 +75,8 @@ public class MoreFragment extends Fragment implements MoreContract.View {
                 .setText(getString(R.string.fragment_more_real_feel_value,
                         currentWeather.getRealFeelTemperature()));
         ((AppCompatTextView) getView().findViewById(R.id.text_view_fragment_more_value_wind_speed))
-                .setText(getString(R.string.fragment_more_value_wind_speed,
-                        currentWeather.getWindSpeed()));
+                .setText(getString(R.string.value_wind_speed,
+                        currentWeather.getWindSpeed(), currentWeather.getWindUnit()));
         ((AppCompatTextView) getView().findViewById(R.id.text_view_fragment_more_value_humidity))
                 .setText(getString(R.string.fragment_more_value_humidity,
                         currentWeather.getHumidity()));

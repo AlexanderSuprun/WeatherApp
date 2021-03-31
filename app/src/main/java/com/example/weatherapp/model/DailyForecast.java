@@ -65,9 +65,10 @@ public class DailyForecast {
     }
 
     public static class Day {
+        @SerializedName("Icon")
         int iconNumber;
         @SerializedName("IconPhrase")
-        String forecast;
+        String iconPhrase;
         @SerializedName("HasPrecipitation")
         boolean hasPrecipitation;
         @SerializedName("PrecipitationType")
@@ -81,12 +82,12 @@ public class DailyForecast {
             this.iconNumber = iconNumber;
         }
 
-        public String getForecast() {
-            return forecast;
+        public String getIconPhrase() {
+            return iconPhrase;
         }
 
-        public void setForecast(String forecast) {
-            this.forecast = forecast;
+        public void setIconPhrase(String iconPhrase) {
+            this.iconPhrase = iconPhrase;
         }
 
         public boolean isHasPrecipitation() {

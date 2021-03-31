@@ -12,7 +12,7 @@
         android:id="@+id/rv_fragment_more_forecast_hourly"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="@dimen/default_middle_margin"
+        android:layout_marginTop="@dimen/default_large_margin"
         android:orientation="horizontal"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintEnd_toEndOf="parent"
@@ -26,8 +26,8 @@
         android:layout_height="0dp"
         android:layout_marginHorizontal="@dimen/default_margin"
         android:layout_marginVertical="@dimen/default_middle_margin"
-        android:alpha="0.4"
-        app:cardCornerRadius="20dp"
+        app:cardBackgroundColor="@color/card_view_background"
+        app:cardCornerRadius="@dimen/card_view_corner_radius"
         app:cardMaxElevation="0dp"
         app:layout_constraintBottom_toTopOf="@id/card_view_fragment_more_aqi"
         app:layout_constraintEnd_toEndOf="parent"
@@ -36,7 +36,8 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:paddingVertical="@dimen/default_padding">
 
             <androidx.constraintlayout.widget.Guideline
@@ -62,6 +63,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/default_small_margin"
                 android:text="@string/fragment_more_real_feel_value"
+                android:textColor="@color/card_view_text_color"
                 android:textSize="@dimen/text_size_small"
                 app:layout_constraintStart_toStartOf="@id/text_view_fragment_more_title_real_feel"
                 app:layout_constraintTop_toBottomOf="@id/text_view_fragment_more_title_real_feel"
@@ -83,6 +85,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/default_small_margin"
                 android:text="@string/fragment_more_chance_of_rain_value"
+                android:textColor="@color/card_view_text_color"
                 android:textSize="@dimen/text_size_small"
                 app:layout_constraintStart_toStartOf="@id/text_view_fragment_more_title_chance_of_rain"
                 app:layout_constraintTop_toBottomOf="@id/text_view_fragment_more_title_chance_of_rain"
@@ -102,7 +105,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/default_small_margin"
-                android:text="@string/fragment_more_value_wind_speed"
+                android:text="@string/value_wind_speed"
+                android:textColor="@color/card_view_text_color"
                 android:textSize="@dimen/text_size_small"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="@id/text_view_fragment_more_title_wind_speed"
@@ -125,6 +129,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/default_small_margin"
                 android:text="@string/fragment_more_value_humidity"
+                android:textColor="@color/card_view_text_color"
                 android:textSize="@dimen/text_size_small"
                 app:layout_constraintStart_toStartOf="@id/text_view_fragment_more_title_humidity"
                 app:layout_constraintTop_toBottomOf="@id/text_view_fragment_more_title_humidity"
@@ -146,6 +151,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/default_small_margin"
                 android:text="@string/fragment_more_value_pressure"
+                android:textColor="@color/card_view_text_color"
                 android:textSize="@dimen/text_size_small"
                 app:layout_constraintStart_toStartOf="@id/text_view_fragment_more_title_pressure"
                 app:layout_constraintTop_toBottomOf="@id/text_view_fragment_more_title_pressure"
@@ -166,6 +172,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/default_small_margin"
+                android:textColor="@color/card_view_text_color"
                 android:textSize="@dimen/text_size_small"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="@id/text_view_fragment_more_title_uv_index"
@@ -180,8 +187,8 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/default_margin"
         android:layout_marginVertical="@dimen/default_middle_margin"
-        android:alpha="0.4"
-        app:cardCornerRadius="20dp"
+        app:cardBackgroundColor="@color/card_view_background"
+        app:cardCornerRadius="@dimen/card_view_corner_radius"
         app:cardMaxElevation="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -208,20 +215,20 @@
                 android:layout_height="24dp"
                 android:layout_marginTop="@dimen/default_small_margin"
                 android:src="@drawable/ic_leaf"
-                app:layout_constraintStart_toStartOf="@id/text_view_fragment_more_title_aqi"
-                app:layout_constraintTop_toBottomOf="@id/text_view_fragment_more_title_aqi"
                 app:layout_constraintBottom_toBottomOf="parent"
-                />
+                app:layout_constraintStart_toStartOf="@id/text_view_fragment_more_title_aqi"
+                app:layout_constraintTop_toBottomOf="@id/text_view_fragment_more_title_aqi" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/text_view_fragment_more_value_aqi"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/text_size_small"
                 android:layout_marginStart="@dimen/default_small_margin"
+                android:textColor="@color/card_view_text_color"
+                android:textSize="@dimen/text_size_small"
+                app:layout_constraintBottom_toBottomOf="@id/image_view_fragment_more_aqi"
                 app:layout_constraintStart_toEndOf="@id/image_view_fragment_more_aqi"
                 app:layout_constraintTop_toTopOf="@id/image_view_fragment_more_aqi"
-                app:layout_constraintBottom_toBottomOf="@id/image_view_fragment_more_aqi"
                 tools:text="2" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

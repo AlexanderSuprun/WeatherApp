@@ -1,7 +1,6 @@
 package com.example.weatherapp.activity;
 
 import android.location.Location;
-import android.util.Log;
 
 import com.example.weatherapp.api.APIClient;
 import com.example.weatherapp.model.CurrentWeather;
@@ -12,7 +11,6 @@ import com.example.weatherapp.model.LocationResponse;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;

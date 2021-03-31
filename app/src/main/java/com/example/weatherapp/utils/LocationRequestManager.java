@@ -1,12 +1,15 @@
 package com.example.weatherapp.utils;
 
 import android.app.Activity;
+import android.content.Context;
 import android.location.Location;
+import android.location.LocationManager;
+
+import androidx.core.location.LocationManagerCompat;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.tasks.OnSuccessListener;
 
 public class LocationRequestManager {
 
@@ -21,17 +24,21 @@ public class LocationRequestManager {
     // Call only if location permission granted
     // otherwise throws SecurityException.
     public void requestLocation() {
-        FusedLocationProviderClient locationClient = LocationServices.getFusedLocationProviderClient(activity);
-        try {
-            locationClient.getCurrentLocation(LocationRequest.PRIORITY_HIGH_ACCURACY, null)
-                    .addOnSuccessListener(activity, new OnSuccessListener<Location>() {
-                        @Override
-                        public void onSuccess(Location location) {
-                            listener.onLocationResult(location);
-                        }
-                    });
-        } catch (SecurityException e) {
-            e.printStackTrace();
+        if (LocationManagerCompat.isLocationEnabled((LocationManager) activity.getSystemService(Context.LOCATION_SERVICE))) {
+            try {
+                FusedLocationProviderClient locationClient = LocationServices.getFusedLocationProviderClient(activity);
+                locationClient.getCurrentLocation(LocationRequest.PRIORITY_HIGH_ACCURACY, null)
+                        .addOnSuccessListener(activity, listener::onLocationResult);
+            } catch (SecurityException e) {
+                e.printStackTrace();
+            }
+        } else {
+            try {
+                listener.onLocationResult(((LocationManager) activity.getSystemService(Context.LOCATION_SERVICE))
+                        .getLastKnownLocation(LocationManager.GPS_PROVIDER));
+            } catch (SecurityException e) {
+                e.printStackTrace();
+            }
         }
     }
 

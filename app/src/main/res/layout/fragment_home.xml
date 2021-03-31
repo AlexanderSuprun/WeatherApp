@@ -67,29 +67,28 @@
         android:alpha="0.8"
         android:textColor="@android:color/white"
         android:textSize="@dimen/text_size_middle"
-        app:layout_constraintBottom_toTopOf="@id/button_fragment_home_aqi"
+        app:layout_constraintBottom_toTopOf="@id/button_fragment_home_wind"
         app:layout_constraintEnd_toEndOf="@id/text_view_fragment_home_degrees_value"
         app:layout_constraintStart_toStartOf="@id/text_view_fragment_home_degrees_value"
         app:layout_constraintTop_toBottomOf="@id/text_view_fragment_home_degrees_value"
         tools:text="Sunny" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/button_fragment_home_aqi"
+        android:id="@+id/button_fragment_home_wind"
         style="@style/Widget.AppCompat.Button.Borderless"
-        android:layout_width="80dp"
-        android:layout_height="32dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/default_margin"
         android:background="@drawable/bg_rounded_button"
-        android:drawableStart="@drawable/ic_leaf"
+        android:textAllCaps="false"
         android:padding="@dimen/default_small_padding"
-        android:text="@string/button_title_aqi"
+        android:text="@string/value_wind_speed"
         android:textColor="@android:color/white"
         android:textSize="@dimen/text_size_very_small"
         app:layout_constraintBottom_toTopOf="@id/rv_fragment_home_forecast_daily"
         app:layout_constraintEnd_toEndOf="@id/text_view_fragment_home_degrees_value"
         app:layout_constraintStart_toStartOf="@id/text_view_fragment_home_degrees_value"
-        app:layout_constraintTop_toBottomOf="@id/text_view_fragment_home_weather_status"
-        tools:text="AQI 20" />
+        app:layout_constraintTop_toBottomOf="@id/text_view_fragment_home_weather_status" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button_fragment_home_more"

@@ -13,12 +13,16 @@ public interface HomeContract {
 
         void setDailyForecasts(List<DailyForecast> dailyForecastList);
 
+        void setCity(String city);
+
         HomeContract.Presenter getPresenter();
     }
 
     interface Presenter {
 
         void dropView();
+
+        void setCity(String city);
 
         void updateDailyForecasts();
 

@@ -89,6 +89,14 @@ public class CurrentWeather {
         return wind.speed.metric.getValue();
     }
 
+    public String getWindUnit() {
+        return wind.speed.metric.getUnit();
+    }
+
+    public String getWindDirection() {
+        return wind.direction.direction;
+    }
+
     public void setWind(Wind wind) {
         this.wind = wind;
     }
@@ -112,11 +120,18 @@ public class CurrentWeather {
     static class Wind {
         @SerializedName("Speed")
         Speed speed;
+        @SerializedName("Direction")
+        Direction direction;
     }
 
     static class Speed {
         @SerializedName("Metric")
         Metric metric;
+    }
+
+    static class Direction {
+        @SerializedName("English")
+        String direction;
     }
 
     static class Pressure {
