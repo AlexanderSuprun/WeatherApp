@@ -1,8 +1,8 @@
-package com.example.weatherapp.activity;
+package com.example.weatherapp;
 
 import android.location.Location;
 
-import com.example.weatherapp.api.APIClient;
+import com.example.weatherapp.api.ApiClient;
 import com.example.weatherapp.model.CurrentWeather;
 import com.example.weatherapp.model.DailyForecast;
 import com.example.weatherapp.model.DailyForecastsResponse;
@@ -17,23 +17,23 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MainRepository implements MainContract.Repository {
+public class MainRepository {
 
-    private static MainRepository mainRepository;
-    private int locationKey;
+    private static MainRepository sMainRepository;
+    private int mLocationKey;
 
     private MainRepository() {
     }
 
     public static MainRepository getInstance() {
-        if (mainRepository == null) {
-            mainRepository = new MainRepository();
+        if (sMainRepository == null) {
+            sMainRepository = new MainRepository();
         }
-        return mainRepository;
+        return sMainRepository;
     }
 
     public void requestLocationKey(Location location, OnLocationKeyResult onLocationKeyResult) {
-        APIClient.getInstance()
+        ApiClient.getInstance()
                 .getApiInterface()
                 .getLocationKey(String.valueOf(location.getLatitude()) + ',' + location.getLongitude())
                 .enqueue(new Callback<LocationResponse>() {
@@ -41,7 +41,7 @@ public class MainRepository implements MainContract.Repository {
                     public void onResponse(@NotNull Call<LocationResponse> call,
                                            @NotNull Response<LocationResponse> response) {
                         if (response.isSuccessful() && response.body() != null) {
-                            locationKey = response.body().getLocationKey();
+                            mLocationKey = response.body().getLocationKey();
                             onLocationKeyResult.onLocationResult(response.body());
                         }
                     }
@@ -53,11 +53,10 @@ public class MainRepository implements MainContract.Repository {
                 });
     }
 
-    @Override
     public void requestCurrentWeather(OnCurrentWeatherResult onCurrentWeatherResult) {
-        APIClient.getInstance()
+        ApiClient.getInstance()
                 .getApiInterface()
-                .getCurrentWeather(locationKey, true, true)
+                .getCurrentWeather(mLocationKey, true, true)
                 .enqueue(new Callback<List<CurrentWeather>>() {
                     @Override
                     public void onResponse(@NotNull Call<List<CurrentWeather>> call,
@@ -74,11 +73,10 @@ public class MainRepository implements MainContract.Repository {
                 });
     }
 
-    @Override
     public void requestDailyForecasts(OnDailyForecastsResult onDailyForecastsResult) {
-        APIClient.getInstance()
+        ApiClient.getInstance()
                 .getApiInterface()
-                .get5DaysForecast(locationKey, true)
+                .get5DaysForecast(mLocationKey, true)
                 .enqueue(new Callback<DailyForecastsResponse>() {
                     @Override
                     public void onResponse(@NotNull Call<DailyForecastsResponse> call,
@@ -95,11 +93,10 @@ public class MainRepository implements MainContract.Repository {
                 });
     }
 
-    @Override
     public void requestHourlyForecasts(OnHourlyForecastsResult onHourlyForecastsResult) {
-        APIClient.getInstance()
+        ApiClient.getInstance()
                 .getApiInterface()
-                .get12HoursForecast(locationKey, true, true)
+                .get12HoursForecast(mLocationKey, true, true)
                 .enqueue(new Callback<List<HourlyForecast>>() {
                     @Override
                     public void onResponse(@NotNull Call<List<HourlyForecast>> call,
@@ -124,7 +121,7 @@ public class MainRepository implements MainContract.Repository {
 
     public interface OnCurrentWeatherResult {
 
-        void onCurrentWeatherResult(List<CurrentWeather> currentWeather);
+        void onCurrentWeatherResult(List<CurrentWeather> currentWeatherList);
 
     }
 

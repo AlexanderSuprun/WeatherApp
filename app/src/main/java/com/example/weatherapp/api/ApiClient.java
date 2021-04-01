@@ -5,13 +5,13 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class APIClient {
+public class ApiClient {
 
     public static final String BASE_URL = "http://dataservice.accuweather.com";
-    private static APIClient client;
-    private final APIInterface apiInterface;
+    private static ApiClient sClient;
+    private final ApiInterface mApiInterface;
 
-    private APIClient() {
+    private ApiClient() {
         OkHttpClient client = new OkHttpClient.Builder()
                 .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
                 .addInterceptor(new WeatherInterceptor())
@@ -22,17 +22,17 @@ public class APIClient {
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-        apiInterface = retrofit.create(APIInterface.class);
+        mApiInterface = retrofit.create(ApiInterface.class);
     }
 
-    public static APIClient getInstance() {
-        if (client == null) {
-            client = new APIClient();
+    public static ApiClient getInstance() {
+        if (sClient == null) {
+            sClient = new ApiClient();
         }
-        return client;
+        return sClient;
     }
 
-    public APIInterface getApiInterface() {
-        return apiInterface;
+    public ApiInterface getApiInterface() {
+        return mApiInterface;
     }
 }

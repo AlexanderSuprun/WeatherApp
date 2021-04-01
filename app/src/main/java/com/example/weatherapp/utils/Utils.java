@@ -15,7 +15,7 @@ import androidx.core.content.ContextCompat;
 
 import com.example.weatherapp.R;
 
-import static com.example.weatherapp.activity.MainActivity.LOCATION_REQUEST_CODE;
+import static com.example.weatherapp.MainActivity.LOCATION_REQUEST_CODE;
 
 public class Utils {
 

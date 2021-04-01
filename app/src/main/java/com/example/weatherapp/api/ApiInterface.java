@@ -13,7 +13,7 @@ import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 
-public interface APIInterface {
+public interface ApiInterface {
 
     @GET("/locations/v1/cities/geoposition/search")
     Call<LocationResponse> getLocationKey(
