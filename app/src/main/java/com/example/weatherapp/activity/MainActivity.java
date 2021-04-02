@@ -89,39 +89,23 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnBu
                 hideProgress();
             }
         });
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
         NetworkRequest.Builder builder = new NetworkRequest.Builder();
         connectivityManager.registerNetworkCallback(builder.build(), networkCallback);
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
+    protected void onStart() {
+        super.onStart();
         if (isPermissionGranted && isNetworkAvailable) {
             presenter.updateData();
         }
     }
 
     @Override
-    protected void onPause() {
-        super.onPause();
-
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        connectivityManager.unregisterNetworkCallback(networkCallback);
-    }
-
-    @Override
     protected void onDestroy() {
         super.onDestroy();
         presenter.dropView();
+        connectivityManager.unregisterNetworkCallback(networkCallback);
     }
 
     @Override
