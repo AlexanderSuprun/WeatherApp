@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_more"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_more_fragment"
+    tools:context=".screen.more.MoreFragment">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_fragment_more_forecast_hourly"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/default_large_margin"
+        android:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:listitem="@layout/rv_hourly_forecast_item" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_view_fragment_more_info"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="@dimen/default_margin"
+        android:layout_marginVertical="@dimen/default_middle_margin"
+        app:cardBackgroundColor="@color/card_view_background"
+        app:cardCornerRadius="@dimen/card_view_corner_radius"
+        app:cardMaxElevation="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/guideline_container"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/rv_fragment_more_forecast_hourly">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:paddingVertical="@dimen/default_padding">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.5" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_view_fragment_more_title_real_feel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/default_middle_margin"
+                android:text="@string/title_real_feel"
+                android:textSize="@dimen/text_size_very_small"
+                app:layout_constraintBottom_toTopOf="@id/text_view_fragment_more_value_real_feel"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_view_fragment_more_value_real_feel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/default_small_margin"
+                android:text="@string/fragment_more_real_feel_value"
+                android:textColor="@color/card_view_text_color"
+                android:textSize="@dimen/text_size_small"
+                app:layout_constraintStart_toStartOf="@id/text_view_fragment_more_title_real_feel"
+                app:layout_constraintTop_toBottomOf="@id/text_view_fragment_more_title_real_feel"
+                tools:text="2.5&#176;C" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_view_fragment_more_title_chance_of_rain"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/default_margin"
+                android:text="@string/title_chance_of_rain"
+                android:textSize="@dimen/text_size_very_small"
+                app:layout_constraintStart_toStartOf="@id/text_view_fragment_more_value_real_feel"
+                app:layout_constraintTop_toBottomOf="@id/text_view_fragment_more_value_real_feel" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_view_fragment_more_value_chance_of_rain"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/default_small_margin"
+                android:text="@string/fragment_more_chance_of_rain_value"
+                android:textColor="@color/card_view_text_color"
+                android:textSize="@dimen/text_size_small"
+                app:layout_constraintStart_toStartOf="@id/text_view_fragment_more_title_chance_of_rain"
+                app:layout_constraintTop_toBottomOf="@id/text_view_fragment_more_title_chance_of_rain"
+                tools:text="6%" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_view_fragment_more_title_wind_speed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/default_margin"
+                android:text="@string/title_wind_speed"
+                app:layout_constraintStart_toStartOf="@id/text_view_fragment_more_value_chance_of_rain"
+                app:layout_constraintTop_toBottomOf="@id/text_view_fragment_more_value_chance_of_rain" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_view_fragment_more_value_wind_speed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/default_small_margin"
+                android:text="@string/value_wind_speed"
+                android:textColor="@color/card_view_text_color"
+                android:textSize="@dimen/text_size_small"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@id/text_view_fragment_more_title_wind_speed"
+                app:layout_constraintTop_toBottomOf="@id/text_view_fragment_more_title_wind_speed"
+                tools:text="2.8 km/h" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_view_fragment_more_title_humidity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/default_middle_margin"
+                android:text="@string/title_humidity"
+                android:textSize="@dimen/text_size_very_small"
+                app:layout_constraintBottom_toTopOf="@id/text_view_fragment_more_value_humidity"
+                app:layout_constraintStart_toStartOf="@id/guideline" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_view_fragment_more_value_humidity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/default_small_margin"
+                android:text="@string/fragment_more_value_humidity"
+                android:textColor="@color/card_view_text_color"
+                android:textSize="@dimen/text_size_small"
+                app:layout_constraintStart_toStartOf="@id/text_view_fragment_more_title_humidity"
+                app:layout_constraintTop_toBottomOf="@id/text_view_fragment_more_title_humidity"
+                tools:text="81%" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_view_fragment_more_title_pressure"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/default_margin"
+                android:text="@string/title_pressure"
+                android:textSize="@dimen/text_size_very_small"
+                app:layout_constraintStart_toStartOf="@id/text_view_fragment_more_value_humidity"
+                app:layout_constraintTop_toBottomOf="@id/text_view_fragment_more_value_humidity" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_size_fragment_more_value_pressure"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/default_small_margin"
+                android:text="@string/fragment_more_value_pressure"
+                android:textColor="@color/card_view_text_color"
+                android:textSize="@dimen/text_size_small"
+                app:layout_constraintStart_toStartOf="@id/text_view_fragment_more_title_pressure"
+                app:layout_constraintTop_toBottomOf="@id/text_view_fragment_more_title_pressure"
+                tools:text="1029.00 hPa" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_view_fragment_more_title_uv_index"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/default_margin"
+                android:text="@string/title_uv_index"
+                android:textSize="@dimen/text_size_very_small"
+                app:layout_constraintStart_toStartOf="@id/text_size_fragment_more_value_pressure"
+                app:layout_constraintTop_toBottomOf="@id/text_size_fragment_more_value_pressure" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_view_fragment_more_value_uv_index"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/default_small_margin"
+                android:textColor="@color/card_view_text_color"
+                android:textSize="@dimen/text_size_small"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@id/text_view_fragment_more_title_uv_index"
+                app:layout_constraintTop_toBottomOf="@id/text_view_fragment_more_title_uv_index"
+                tools:text="5" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_view_fragment_more_aqi"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/default_margin"
+        android:layout_marginVertical="@dimen/default_middle_margin"
+        app:cardBackgroundColor="@color/card_view_background"
+        app:cardCornerRadius="@dimen/card_view_corner_radius"
+        app:cardMaxElevation="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/guideline_container"
+        app:layout_constraintTop_toTopOf="@id/rv_fragment_more_forecast_hourly">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingVertical="@dimen/default_padding">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_view_fragment_more_title_aqi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/default_middle_margin"
+                android:text="@string/title_aid_quality_index"
+                android:textSize="@dimen/text_size_very_small"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/image_view_fragment_more_aqi"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginTop="@dimen/default_small_margin"
+                android:src="@drawable/ic_leaf"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@id/text_view_fragment_more_title_aqi"
+                app:layout_constraintTop_toBottomOf="@id/text_view_fragment_more_title_aqi" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_view_fragment_more_value_aqi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/default_small_margin"
+                android:textColor="@color/card_view_text_color"
+                android:textSize="@dimen/text_size_small"
+                app:layout_constraintBottom_toBottomOf="@id/image_view_fragment_more_aqi"
+                app:layout_constraintStart_toEndOf="@id/image_view_fragment_more_aqi"
+                app:layout_constraintTop_toTopOf="@id/image_view_fragment_more_aqi"
+                tools:text="2" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
