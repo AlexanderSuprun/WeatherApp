@@ -22,6 +22,8 @@ import androidx.viewpager.widget.ViewPager;
 import com.example.weatherapp.utils.Utils;
 import com.example.weatherapp.utils.adapter.ViewPagerAdapter;
 
+import static com.example.weatherapp.MainViewModel.LOCATION_NULL;
+
 public class MainActivity extends AppCompatActivity implements HomeFragment.OnButtonMoreClickListener {
 
     public static final int LOCATION_REQUEST_CODE = 142;
@@ -105,6 +107,9 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnBu
         }
 
         mModel.getCurrentWeather().observe(this, currentWeather -> mSwipeRefreshLayout.setRefreshing(false));
+        mModel.getLocationStatus().observe(this, s -> {
+            if (s.equals(LOCATION_NULL)) showMessageEnableGPS();
+        });
     }
 
     @Override
