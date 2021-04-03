@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/rv_daily_forecast_item_height"
+    android:orientation="horizontal"
+    android:paddingStart="@dimen/default_padding"
+    android:paddingEnd="@dimen/default_padding">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/image_view_rv_daily_forecast_item_icon"
+        android:layout_width="@dimen/rv_daily_forecast_item_icon_width"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/default_small_margin"
+        android:contentDescription="@string/content_description_daily_forecast"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/text_view_rv_daily_forecast_item_day_of_week"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/default_small_margin"
+        android:gravity="center"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/text_size_small"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/image_view_rv_daily_forecast_item_icon"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Monday" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/text_view_rv_daily_forecast_item_middle_dot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginHorizontal="@dimen/default_small_margin"
+        android:text="@string/middle_dot"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/text_size_middle"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/text_view_rv_daily_forecast_item_day_of_week"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/text_view_rv_daily_forecast_item_forecast"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/default_small_margin"
+        android:gravity="center"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/text_size_small"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/text_view_rv_daily_forecast_item_middle_dot"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Sunny" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/text_view_rv_daily_forecast_item_degrees_max"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginHorizontal="@dimen/default_small_margin"
+        android:text="@string/rv_daily_forecast_item_degrees_max"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/text_size_small"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/text_view_rv_daily_forecast_item_slash"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="+5&#176;" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/text_view_rv_daily_forecast_item_slash"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/default_small_margin"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/text_size_small"
+        android:text="@string/slash"
+        app:layout_constraintEnd_toStartOf="@id/text_view_rv_daily_forecast_item_degrees_min"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:text="&#47;" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/text_view_rv_daily_forecast_item_degrees_min"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginEnd="@dimen/default_small_margin"
+        android:text="@string/rv_daily_forecast_item_degrees_min"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/text_size_small"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="0&#176;" />
+</androidx.constraintlayout.widget.ConstraintLayout>

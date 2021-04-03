@@ -10,13 +10,14 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_fragment_more_forecast_hourly"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="@dimen/default_large_margin"
-        android:orientation="horizontal"
+        android:layout_margin="@dimen/default_small_margin"
+        android:orientation="vertical"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@id/guideline_container"
         app:layout_constraintTop_toTopOf="parent"
         tools:listitem="@layout/rv_hourly_forecast_item" />
 
@@ -29,10 +30,10 @@
         app:cardBackgroundColor="@color/card_view_background"
         app:cardCornerRadius="@dimen/card_view_corner_radius"
         app:cardMaxElevation="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/card_view_fragment_more_aqi"
         app:layout_constraintEnd_toStartOf="@id/guideline_container"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/rv_fragment_more_forecast_hourly">
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -191,9 +192,9 @@
         app:cardCornerRadius="@dimen/card_view_corner_radius"
         app:cardMaxElevation="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/guideline_container"
-        app:layout_constraintTop_toTopOf="@id/rv_fragment_more_forecast_hourly">
+        app:layout_constraintEnd_toStartOf="@id/guideline_container"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/card_view_fragment_more_info">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -241,6 +242,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.5" />
+        app:layout_constraintGuide_percent="0.6" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
