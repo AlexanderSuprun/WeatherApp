@@ -13,10 +13,10 @@ android {
         versionCode 1
         versionName "1.0"
 
-        def Properties properties = new Properties()
-        properties.load(project.rootProject.file("local.properties").newDataInputStream())
-
-        resValue "string", "apikey", properties.getProperty("apikey", "")
+//        def Properties properties = new Properties()
+//        properties.load(project.rootProject.file("local.properties").newDataInputStream())
+//
+//        resValue "string", "apikey", properties.getProperty("apikey", "")
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
