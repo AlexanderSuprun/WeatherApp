@@ -1,7 +1,6 @@
 package com.example.weatherapp.activity;
 
 import android.location.Location;
-import android.widget.Toast;
 
 import com.example.weatherapp.api.APIClient;
 import com.example.weatherapp.model.CurrentWeather;

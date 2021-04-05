@@ -1,7 +1,6 @@
 package com.example.weatherapp.activity;
 
 import android.location.Location;
-import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -42,21 +41,21 @@ public class MainPresenter implements MainContract.Presenter, LocationRequestMan
     @Override
     public void onLocationResult(Location result) {
         if (result != null) {
-//            MainRepository.getInstance().requestLocationKey(result, locationResponse -> {
-//                //LocationKey received
-//                //Now it's safe to call
-//                //HomePresenter and MorePresenter methods to update data.
-//                homePresenter = homeFragment.getPresenter();
-//                morePresenter = moreFragment.getPresenter();
-//                MainRepository.getInstance().requestCurrentWeather(currentWeather -> {
-//                    homePresenter.updateCurrentWeather(currentWeather.get(0));
-//                    morePresenter.updateCurrentWeatherDetails(currentWeather.get(0));
-//                    view.hideProgress();
-//                });
-//                homePresenter.setCity(locationResponse.getCity());
-//                homePresenter.updateDailyForecasts();
-//                morePresenter.updateHourlyForecast();
-//            });
+            MainRepository.getInstance().requestLocationKey(result, locationResponse -> {
+                //LocationKey received
+                //Now it's safe to call
+                //HomePresenter and MorePresenter methods to update data.
+                homePresenter = homeFragment.getPresenter();
+                morePresenter = moreFragment.getPresenter();
+                MainRepository.getInstance().requestCurrentWeather(currentWeather -> {
+                    homePresenter.updateCurrentWeather(currentWeather.get(0));
+                    morePresenter.updateCurrentWeatherDetails(currentWeather.get(0));
+                    view.hideProgress();
+                });
+                homePresenter.setCity(locationResponse.getCity());
+                homePresenter.updateDailyForecasts();
+                morePresenter.updateHourlyForecast();
+            });
         } else {
             view.hideProgress();
             view.showMessageEnableGPS();
