@@ -1,5 +1,6 @@
 package com.example.weatherapp.screen.more;
 
+import com.example.weatherapp.activity.MainPresenter;
 import com.example.weatherapp.model.CurrentWeather;
 import com.example.weatherapp.model.HourlyForecast;
 

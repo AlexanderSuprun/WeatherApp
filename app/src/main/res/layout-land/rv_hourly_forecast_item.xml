@@ -3,9 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="@dimen/default_small_padding"
     android:orientation="horizontal"
-    tools:background="@android:color/black">
+    android:padding="@dimen/default_small_padding">
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/text_view_rv_hourly_forecast_item_time"
@@ -22,7 +21,7 @@
         android:id="@+id/text_view_rv_hourly_forecast_item_degrees"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/default_small_margin"
+        android:layout_marginHorizontal="@dimen/default_small_margin"
         android:gravity="center"
         android:text="@string/rv_hourly_forecast_item_degrees"
         android:textColor="@android:color/white"
@@ -34,13 +33,14 @@
         android:layout_width="wrap_content"
         android:layout_height="@dimen/rv_hourly_forecast_item_icon_height"
         android:layout_gravity="center"
-        android:layout_marginEnd="@dimen/default_small_margin"
+        android:layout_marginHorizontal="@dimen/default_small_margin"
         android:contentDescription="@string/content_description_hourly_forecast"
         tools:src="@drawable/ic_weather_sun_line" />
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/default_small_margin"
         android:orientation="horizontal">
 
         <androidx.appcompat.widget.AppCompatImageView

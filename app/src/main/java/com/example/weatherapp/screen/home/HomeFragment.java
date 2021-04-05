@@ -25,8 +25,8 @@ import java.util.List;
 
 public class HomeFragment extends Fragment implements HomeContract.View {
 
-    private final HomeContract.Presenter presenter = new HomePresenter(this);
     private final ArrayList<DailyForecast> dailyForecastItems = new ArrayList<>();
+    private HomeContract.Presenter presenter;
     private DailyForecastRecyclerAdapter adapter;
 
     public HomeFragment() {
@@ -48,12 +48,11 @@ public class HomeFragment extends Fragment implements HomeContract.View {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
+        presenter = new HomePresenter(this);
         RecyclerView recyclerView = view.findViewById(R.id.rv_fragment_home_forecast_daily);
         adapter = new DailyForecastRecyclerAdapter(dailyForecastItems, getContext());
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(adapter);
-
         view.findViewById(R.id.button_fragment_home_more).setOnClickListener(v -> {
             if (getActivity() instanceof OnButtonMoreClickListener) {
                 OnButtonMoreClickListener listener = (OnButtonMoreClickListener) getActivity();
@@ -97,7 +96,6 @@ public class HomeFragment extends Fragment implements HomeContract.View {
         dailyForecastItems.addAll(dailyForecastList);
         adapter.notifyDataSetChanged();
     }
-
 
     public interface OnButtonMoreClickListener {
         void onButtonClick();

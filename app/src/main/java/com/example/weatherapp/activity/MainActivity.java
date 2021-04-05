@@ -96,6 +96,12 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnBu
     @Override
     protected void onStart() {
         super.onStart();
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         if (isPermissionGranted && isNetworkAvailable) {
             presenter.updateData();
         }

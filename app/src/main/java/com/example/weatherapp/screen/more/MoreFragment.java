@@ -1,7 +1,9 @@
 package com.example.weatherapp.screen.more;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Surface;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -23,8 +25,8 @@ import java.util.List;
 
 public class MoreFragment extends Fragment implements MoreContract.View {
 
-    private final MoreContract.Presenter presenter = new MorePresenter(this);
     private final ArrayList<HourlyForecast> hourlyForecastItems = new ArrayList<>();
+    private MoreContract.Presenter presenter;
     private HourlyForecastRecyclerAdapter adapter;
 
     public MoreFragment() {
@@ -46,10 +48,16 @@ public class MoreFragment extends Fragment implements MoreContract.View {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
+        presenter = new MorePresenter(this);
         adapter = new HourlyForecastRecyclerAdapter(hourlyForecastItems, getContext());
         RecyclerView recyclerView = view.findViewById(R.id.rv_fragment_more_forecast_hourly);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+
+        if (getActivity().getWindowManager().getDefaultDisplay().getRotation() == Surface.ROTATION_90 ||
+                getActivity().getWindowManager().getDefaultDisplay().getRotation() == Surface.ROTATION_270) {
+            recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
+        } else {
+            recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+        }
         recyclerView.setAdapter(adapter);
     }
 

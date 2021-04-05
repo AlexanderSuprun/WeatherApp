@@ -1,5 +1,6 @@
 package com.example.weatherapp.screen.home;
 
+import com.example.weatherapp.activity.MainPresenter;
 import com.example.weatherapp.model.CurrentWeather;
 import com.example.weatherapp.model.DailyForecast;
 
@@ -27,6 +28,5 @@ public interface HomeContract {
         void updateDailyForecasts();
 
         void updateCurrentWeather(CurrentWeather currentWeather);
-
     }
 }
