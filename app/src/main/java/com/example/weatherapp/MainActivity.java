@@ -82,7 +82,11 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnBu
         mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh_activity_main_container);
         mSwipeRefreshLayout.setOnRefreshListener(() -> {
             if (mIsPermissionGranted && mIsNetworkAvailable) {
+                if (mModel == null) {
+                    mModel = new ViewModelProvider(this).get(MainViewModel.class);
+                }
                 mModel.updateData();
+                mModel.getCurrentWeather().observe(this, currentWeather -> mSwipeRefreshLayout.setRefreshing(false));
             } else if (mIsPermissionGranted) {
                 Toast.makeText(getBaseContext(), getString(R.string.toast_network_unavailable), Toast.LENGTH_SHORT).show();
                 hideProgress();
@@ -106,7 +110,6 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnBu
         } else if (mIsPermissionGranted) {
             Toast.makeText(getBaseContext(), getString(R.string.toast_network_unavailable), Toast.LENGTH_SHORT).show();
         }
-        mModel.getCurrentWeather().observe(this, currentWeather -> mSwipeRefreshLayout.setRefreshing(false));
     }
 
     @Override
