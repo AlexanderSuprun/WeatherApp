@@ -73,7 +73,7 @@ public class Utils {
                 return ContextCompat.getDrawable(context, R.drawable.ic_weather_icy);
             case 25:
             case 26:
-            case 27:
+            case 29:
                 return ContextCompat.getDrawable(context, R.drawable.ic_weather_heavy_showers_line);
             case 30:
                 return ContextCompat.getDrawable(context, R.drawable.ic_weather_temp_hot_line);
@@ -118,51 +118,51 @@ public class Utils {
     }
 
     public static String getWeatherText(String iconPhrase) {
-        switch (iconPhrase) {
-            case "Sunny":
-            case "Mostly Sunny":
-            case "Partly Sunny":
+        switch (iconPhrase.toLowerCase()) {
+            case "sunny":
+            case "mostly sunny":
+            case "partly sunny":
                 return "Sunny";
-            case "Intermittent clouds":
-            case "Mostly cloudy":
-            case "Cloudy":
+            case "intermittent clouds":
+            case "mostly cloudy":
+            case "cloudy":
                 return "Cloudy";
-            case "Hazy Sunshine":
+            case "hazy sunshine":
                 return "Hazy Sunshine";
-            case "Dreary (Overcast)":
+            case "dreary (overcast)":
                 return "Overcast";
-            case "Fog":
+            case "fog":
                 return "Fog";
-            case "Showers":
-            case "Mostly Cloudy w/ Showers":
-            case "Partly Sunny w/ Showers":
+            case "showers":
+            case "mostly cloudy w/ showers":
+            case "partly sunny w/ showers":
                 return "Showers";
-            case "T-Storms":
-            case "Mostly Cloudy w/ T-Storms":
-            case "Partly Sunny w/ T-Storms":
+            case "t-Storms":
+            case "mostly cloudy w/ t-Storms":
+            case "partly sunny w/ t-Storms":
                 return "Thunderstorm";
-            case "Rain":
+            case "rain":
                 return "Rain";
-            case "Flurries":
-            case "Mostly Cloudy w/ Flurries":
-            case "Partly Sunny w/ Flurries":
+            case "flurries":
+            case "mostly cloudy w/ flurries":
+            case "partly sunny w/ flurries":
                 return "Flurry";
-            case "Snow":
-            case "Mostly Cloudy w/ Snow":
+            case "snow":
+            case "mostly cloudy w/ snow":
                 return "Snow";
-            case "Ice":
+            case "ice":
                 return "Ice";
-            case "Sleet":
+            case "sleet":
                 return "Sleet";
-            case "Freezing Rain":
+            case "freezing rain":
                 return "Cold Rain";
-            case "Rain and Snow":
+            case "rain and snow":
                 return "Rain & Snow";
-            case "Hot":
+            case "hot":
                 return "Hot";
-            case "Cold":
+            case "cold":
                 return "Cold";
-            case "Windy":
+            case "windy":
                 return "Windy";
             default:
                 return "Undefined";

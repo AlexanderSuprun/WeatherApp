@@ -16,8 +16,6 @@ public interface ViewModelContract {
 
         LiveData<CurrentWeather> getCurrentWeather();
 
-        LiveData<String> getLocationStatus();
-
     }
 
     interface HomeFragment {

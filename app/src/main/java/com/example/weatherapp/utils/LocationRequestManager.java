@@ -10,13 +10,16 @@ import com.example.weatherapp.app.WeatherApp;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.CancellationTokenSource;
 
 public class LocationRequestManager {
 
     private final OnLocationResultListener mListener;
+    private final CancellationTokenSource mCancellationToken;
     private Context mContext = WeatherApp.getAppContext();
 
     public LocationRequestManager(OnLocationResultListener listener) {
+        mCancellationToken = new CancellationTokenSource();
         this.mListener = listener;
     }
 
@@ -26,7 +29,7 @@ public class LocationRequestManager {
         if (LocationManagerCompat.isLocationEnabled((LocationManager) mContext.getSystemService(Context.LOCATION_SERVICE))) {
             try {
                 FusedLocationProviderClient locationClient = LocationServices.getFusedLocationProviderClient(mContext);
-                locationClient.getCurrentLocation(LocationRequest.PRIORITY_HIGH_ACCURACY, null)
+                locationClient.getCurrentLocation(LocationRequest.PRIORITY_HIGH_ACCURACY, mCancellationToken.getToken())
                         .addOnSuccessListener(mListener::onLocationResult);
             } catch (SecurityException e) {
                 e.printStackTrace();
@@ -42,6 +45,7 @@ public class LocationRequestManager {
     }
 
     public void clearContext() {
+        mCancellationToken.cancel();
         mContext = null;
     }
 

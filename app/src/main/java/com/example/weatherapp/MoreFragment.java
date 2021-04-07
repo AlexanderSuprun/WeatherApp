@@ -2,6 +2,7 @@ package com.example.weatherapp;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Surface;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -42,7 +43,13 @@ public class MoreFragment extends Fragment {
 
         mAdapter = new HourlyForecastRecyclerAdapter(mHourlyForecastItems, getContext());
         RecyclerView recyclerView = view.findViewById(R.id.rv_fragment_more_forecast_hourly);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+
+        if (getActivity().getWindowManager().getDefaultDisplay().getRotation() == Surface.ROTATION_90 ||
+                getActivity().getWindowManager().getDefaultDisplay().getRotation() == Surface.ROTATION_270) {
+            recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
+        } else {
+            recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+        }
         recyclerView.setAdapter(mAdapter);
 
         mViewModel = new ViewModelProvider(requireActivity()).get(MainViewModel.class);

@@ -5,8 +5,8 @@
     android:id="@+id/fragment_home"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_main_fragment"
-    tools:context=".screen.home.HomeFragment">
+    android:background="@drawable/bg_home_fragment_land"
+    tools:context=".HomeFragment">
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/text_view_fragment_home_city"
@@ -108,7 +108,9 @@
         android:id="@+id/rv_fragment_home_forecast_daily"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:paddingBottom="@dimen/default_padding"
+        android:layout_marginHorizontal="@dimen/default_margin"
+        android:layout_marginTop="@dimen/default_middle_margin"
+        android:layout_marginBottom="@dimen/default_margin"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

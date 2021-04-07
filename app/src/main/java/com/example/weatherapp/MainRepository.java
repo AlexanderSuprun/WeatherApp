@@ -113,6 +113,14 @@ public class MainRepository {
                 });
     }
 
+    public int getLocationKey() {
+        return mLocationKey;
+    }
+
+    public void setLocationKey(int mLocationKey) {
+        this.mLocationKey = mLocationKey;
+    }
+
     public interface OnLocationKeyResult {
 
         void onLocationResult(LocationResponse locationResponse);

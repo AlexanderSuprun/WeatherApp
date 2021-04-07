@@ -22,8 +22,6 @@ import androidx.viewpager.widget.ViewPager;
 import com.example.weatherapp.utils.Utils;
 import com.example.weatherapp.utils.adapter.ViewPagerAdapter;
 
-import static com.example.weatherapp.MainViewModel.LOCATION_NULL;
-
 public class MainActivity extends AppCompatActivity implements HomeFragment.OnButtonMoreClickListener {
 
     public static final int LOCATION_REQUEST_CODE = 142;
@@ -40,7 +38,6 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnBu
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         // TODO: Try to replace ViewPager with ViewPager2.
-        mModel = new ViewModelProvider(this).get(MainViewModel.class);
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         mViewPager = findViewById(R.id.view_pager_activity_main);
         mViewPager.setAdapter(adapter);
@@ -81,6 +78,7 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnBu
             mIsPermissionGranted = true;
         }
 
+//        mModel = new ViewModelProvider(this).get(MainViewModel.class);
         mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh_activity_main_container);
         mSwipeRefreshLayout.setOnRefreshListener(() -> {
             if (mIsPermissionGranted && mIsNetworkAvailable) {
@@ -103,13 +101,12 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnBu
     protected void onResume() {
         super.onResume();
         if (mIsPermissionGranted && mIsNetworkAvailable) {
-            mModel.updateData();
+            mModel = new ViewModelProvider(this).get(MainViewModel.class);
+            //mModel.updateData();
+        } else if (mIsPermissionGranted) {
+            Toast.makeText(getBaseContext(), getString(R.string.toast_network_unavailable), Toast.LENGTH_SHORT).show();
         }
-
         mModel.getCurrentWeather().observe(this, currentWeather -> mSwipeRefreshLayout.setRefreshing(false));
-        mModel.getLocationStatus().observe(this, s -> {
-            if (s.equals(LOCATION_NULL)) showMessageEnableGPS();
-        });
     }
 
     @Override
@@ -121,14 +118,6 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnBu
     protected void onStop() {
         super.onStop();
         mConnectivityManager.unregisterNetworkCallback(mNetworkCallback);
-    }
-
-    public void showMessageEnableGPS() {
-        Utils.showEnableGPSDialog(this).show();
-    }
-
-    public void showProgress() {
-
     }
 
     public void hideProgress() {

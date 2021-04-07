@@ -4,11 +4,13 @@ import android.location.Location;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.SavedStateHandle;
 import androidx.lifecycle.ViewModel;
 
 import com.example.weatherapp.model.CurrentWeather;
 import com.example.weatherapp.model.DailyForecast;
 import com.example.weatherapp.model.HourlyForecast;
+import com.example.weatherapp.utils.AppPrefsManager;
 import com.example.weatherapp.utils.LocationRequestManager;
 
 import java.util.List;
@@ -16,13 +18,21 @@ import java.util.List;
 public class MainViewModel extends ViewModel implements ViewModelContract.Activity, ViewModelContract.HomeFragment, ViewModelContract.MoreFragment,
         LocationRequestManager.OnLocationResultListener {
 
-    public static final String LOCATION_NULL = "com.example.weatherapp.LOCATION_NULL";
     private final LocationRequestManager mLocationManager = new LocationRequestManager(this);
-    private MutableLiveData<CurrentWeather> mCurrentWeather;
-    private MutableLiveData<String> mCity;
-    private MutableLiveData<List<DailyForecast>> mDailyForecasts;
-    private MutableLiveData<List<HourlyForecast>> mHourlyForecasts;
-    private MutableLiveData<String> mLocationStatus;
+    private final AppPrefsManager prefsManager;
+    private final MutableLiveData<CurrentWeather> mCurrentWeather;
+    private final MutableLiveData<String> mCity;
+    private final MutableLiveData<List<DailyForecast>> mDailyForecasts;
+    private final MutableLiveData<List<HourlyForecast>> mHourlyForecasts;
+
+    public MainViewModel() {
+        mCurrentWeather = new MutableLiveData<>();
+        mCity = new MutableLiveData<>();
+        mDailyForecasts = new MutableLiveData<>();
+        mHourlyForecasts = new MutableLiveData<>();
+        prefsManager = new AppPrefsManager();
+        updateData();
+    }
 
     // TODO: Fix call on screen rotation.
     @Override
@@ -39,9 +49,18 @@ public class MainViewModel extends ViewModel implements ViewModelContract.Activi
                         mCurrentWeather.postValue(currentWeatherList.get(0)));
                 MainRepository.getInstance().requestDailyForecasts(mDailyForecasts::postValue);
                 MainRepository.getInstance().requestHourlyForecasts(mHourlyForecasts::postValue);
+                prefsManager.saveLocationKey(locationResponse.getLocationKey());
+                prefsManager.saveCity(locationResponse.getCity());
             });
         } else {
-            mLocationStatus.setValue(LOCATION_NULL);
+            if (prefsManager.getLocationKey() != AppPrefsManager.LOCATION_KEY_NULL) {
+                MainRepository.getInstance().setLocationKey(prefsManager.getLocationKey());
+                mCity.setValue(prefsManager.getCity());
+                MainRepository.getInstance().requestCurrentWeather(currentWeatherList ->
+                        mCurrentWeather.postValue(currentWeatherList.get(0)));
+                MainRepository.getInstance().requestDailyForecasts(mDailyForecasts::postValue);
+                MainRepository.getInstance().requestHourlyForecasts(mHourlyForecasts::postValue);
+            }
         }
     }
 
@@ -53,46 +72,21 @@ public class MainViewModel extends ViewModel implements ViewModelContract.Activi
 
     @Override
     public LiveData<String> getCity() {
-        if (mCity == null) {
-            mCity = new MutableLiveData<>();
-            return mCity;
-        }
         return mCity;
     }
 
     @Override
     public LiveData<CurrentWeather> getCurrentWeather() {
-        if (mCurrentWeather == null) {
-            mCurrentWeather = new MutableLiveData<>();
-            return mCurrentWeather;
-        }
         return mCurrentWeather;
     }
 
     @Override
     public LiveData<List<DailyForecast>> getDailyForecasts() {
-        if (mDailyForecasts == null) {
-            mDailyForecasts = new MutableLiveData<>();
-            return mDailyForecasts;
-        }
         return mDailyForecasts;
     }
 
     @Override
     public LiveData<List<HourlyForecast>> getHourlyForecasts() {
-        if (mHourlyForecasts == null) {
-            mHourlyForecasts = new MutableLiveData<>();
-            return mHourlyForecasts;
-        }
         return mHourlyForecasts;
-    }
-
-    @Override
-    public LiveData<String> getLocationStatus() {
-        if (mLocationStatus == null) {
-            mLocationStatus = new MutableLiveData<>();
-            return mLocationStatus;
-        }
-        return mLocationStatus;
     }
 }
