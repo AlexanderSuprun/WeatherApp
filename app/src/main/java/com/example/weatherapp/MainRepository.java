@@ -2,6 +2,9 @@ package com.example.weatherapp;
 
 import android.location.Location;
 
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+
 import com.example.weatherapp.api.ApiClient;
 import com.example.weatherapp.model.CurrentWeather;
 import com.example.weatherapp.model.DailyForecast;
@@ -19,20 +22,21 @@ import retrofit2.Response;
 
 public class MainRepository {
 
-    private static MainRepository sMainRepository;
-    private int mLocationKey;
+    private final MutableLiveData<Integer> mLocationKey;
+    private final MutableLiveData<CurrentWeather> mCurrentWeather;
+    private final MutableLiveData<List<DailyForecast>> mDailyForecasts;
+    private final MutableLiveData<List<HourlyForecast>> mHourlyForecasts;
+    private final MutableLiveData<String> mCity;
 
-    private MainRepository() {
+    public MainRepository() {
+        mLocationKey = new MutableLiveData<>();
+        mCurrentWeather = new MutableLiveData<>();
+        mDailyForecasts = new MutableLiveData<>();
+        mHourlyForecasts = new MutableLiveData<>();
+        mCity = new MutableLiveData<>();
     }
 
-    public static MainRepository getInstance() {
-        if (sMainRepository == null) {
-            sMainRepository = new MainRepository();
-        }
-        return sMainRepository;
-    }
-
-    public void requestLocationKey(Location location, OnLocationKeyResult onLocationKeyResult) {
+    public void requestLocationKey(Location location) {
         ApiClient.getInstance()
                 .getApiInterface()
                 .getLocationKey(String.valueOf(location.getLatitude()) + ',' + location.getLongitude())
@@ -41,8 +45,8 @@ public class MainRepository {
                     public void onResponse(@NotNull Call<LocationResponse> call,
                                            @NotNull Response<LocationResponse> response) {
                         if (response.isSuccessful() && response.body() != null) {
-                            mLocationKey = response.body().getLocationKey();
-                            onLocationKeyResult.onLocationResult(response.body());
+                            mLocationKey.postValue(response.body().getLocationKey());
+                            mCity.postValue(response.body().getCity());
                         }
                     }
 
@@ -53,16 +57,16 @@ public class MainRepository {
                 });
     }
 
-    public void requestCurrentWeather(OnCurrentWeatherResult onCurrentWeatherResult) {
+    public void requestCurrentWeather() {
         ApiClient.getInstance()
                 .getApiInterface()
-                .getCurrentWeather(mLocationKey, true, true)
+                .getCurrentWeather(mLocationKey.getValue(), true, true)
                 .enqueue(new Callback<List<CurrentWeather>>() {
                     @Override
                     public void onResponse(@NotNull Call<List<CurrentWeather>> call,
                                            @NotNull Response<List<CurrentWeather>> response) {
                         if (response.isSuccessful() && response.body() != null) {
-                            onCurrentWeatherResult.onCurrentWeatherResult(response.body());
+                            mCurrentWeather.postValue(response.body().get(0));
                         }
                     }
 
@@ -73,16 +77,16 @@ public class MainRepository {
                 });
     }
 
-    public void requestDailyForecasts(OnDailyForecastsResult onDailyForecastsResult) {
+    public void requestDailyForecasts() {
         ApiClient.getInstance()
                 .getApiInterface()
-                .get5DaysForecast(mLocationKey, true)
+                .get5DaysForecast(mLocationKey.getValue(), true)
                 .enqueue(new Callback<DailyForecastsResponse>() {
                     @Override
                     public void onResponse(@NotNull Call<DailyForecastsResponse> call,
                                            @NotNull Response<DailyForecastsResponse> response) {
                         if (response.isSuccessful() && response.body() != null) {
-                            onDailyForecastsResult.onDailyForecastsResult(response.body().getForecasts());
+                            mDailyForecasts.postValue(response.body().getForecasts());
                         }
                     }
 
@@ -93,16 +97,16 @@ public class MainRepository {
                 });
     }
 
-    public void requestHourlyForecasts(OnHourlyForecastsResult onHourlyForecastsResult) {
+    public void requestHourlyForecasts() {
         ApiClient.getInstance()
                 .getApiInterface()
-                .get12HoursForecast(mLocationKey, true, true)
+                .get12HoursForecast(mLocationKey.getValue(), true, true)
                 .enqueue(new Callback<List<HourlyForecast>>() {
                     @Override
                     public void onResponse(@NotNull Call<List<HourlyForecast>> call,
                                            @NotNull Response<List<HourlyForecast>> response) {
                         if (response.isSuccessful() && response.body() != null) {
-                            onHourlyForecastsResult.onHourlyForecastsResult(response.body());
+                            mHourlyForecasts.postValue(response.body());
                         }
                     }
 
@@ -113,35 +117,27 @@ public class MainRepository {
                 });
     }
 
-    public int getLocationKey() {
+    public LiveData<Integer> getLocationKey() {
         return mLocationKey;
     }
 
-    public void setLocationKey(int mLocationKey) {
-        this.mLocationKey = mLocationKey;
+    public void setLocationKey(int locationKey) {
+        this.mLocationKey.setValue(locationKey);
     }
 
-    public interface OnLocationKeyResult {
-
-        void onLocationResult(LocationResponse locationResponse);
-
+    public LiveData<String> getCity() {
+        return mCity;
     }
 
-    public interface OnCurrentWeatherResult {
-
-        void onCurrentWeatherResult(List<CurrentWeather> currentWeatherList);
-
+    public LiveData<CurrentWeather> getCurrentWeather() {
+        return mCurrentWeather;
     }
 
-    public interface OnDailyForecastsResult {
-
-        void onDailyForecastsResult(List<DailyForecast> dailyForecastList);
-
+    public LiveData<List<DailyForecast>> getDailyForecasts() {
+        return mDailyForecasts;
     }
 
-    public interface OnHourlyForecastsResult {
-
-        void onHourlyForecastsResult(List<HourlyForecast> hourlyForecastList);
-
+    public LiveData<List<HourlyForecast>> getHourlyForecasts() {
+        return mHourlyForecasts;
     }
 }

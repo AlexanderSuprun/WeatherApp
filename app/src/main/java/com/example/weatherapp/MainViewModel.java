@@ -4,7 +4,7 @@ import android.location.Location;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.SavedStateHandle;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
 
 import com.example.weatherapp.model.CurrentWeather;
@@ -20,46 +20,47 @@ public class MainViewModel extends ViewModel implements ViewModelContract.Activi
 
     private final LocationRequestManager mLocationManager = new LocationRequestManager(this);
     private final AppPrefsManager prefsManager;
-    private final MutableLiveData<CurrentWeather> mCurrentWeather;
+    private final MainRepository mMainRepository;
+    private final LiveData<CurrentWeather> mCurrentWeather;
     private final MutableLiveData<String> mCity;
-    private final MutableLiveData<List<DailyForecast>> mDailyForecasts;
-    private final MutableLiveData<List<HourlyForecast>> mHourlyForecasts;
+    private final LiveData<List<DailyForecast>> mDailyForecasts;
+    private final LiveData<List<HourlyForecast>> mHourlyForecasts;
+    private final LiveData<Integer> mLocationKey;
+    private Observer<Integer> mLocationKeyObserver;
 
     public MainViewModel() {
-        mCurrentWeather = new MutableLiveData<>();
-        mCity = new MutableLiveData<>();
-        mDailyForecasts = new MutableLiveData<>();
-        mHourlyForecasts = new MutableLiveData<>();
+        mMainRepository = new MainRepository();
+        mCurrentWeather = mMainRepository.getCurrentWeather();
+        mCity = (MutableLiveData<String>) mMainRepository.getCity();
+        mDailyForecasts = mMainRepository.getDailyForecasts();
+        mHourlyForecasts = mMainRepository.getHourlyForecasts();
+        mLocationKey = mMainRepository.getLocationKey();
         prefsManager = new AppPrefsManager();
         updateData();
     }
 
-    // TODO: Fix call on screen rotation.
+    @SuppressWarnings("ConstantConditions")
     @Override
     public void updateData() {
         mLocationManager.requestLocation();
+        mLocationKey.observeForever(mLocationKeyObserver = integer -> {
+            mMainRepository.requestCurrentWeather();
+            mMainRepository.requestDailyForecasts();
+            mMainRepository.requestHourlyForecasts();
+            prefsManager.saveLocationKey(mLocationKey.getValue());
+            prefsManager.saveCity(mCity.getValue());
+        });
     }
 
     @Override
     public void onLocationResult(Location result) {
         if (result != null) {
-            MainRepository.getInstance().requestLocationKey(result, locationResponse -> {
-                mCity.postValue(locationResponse.getCity());
-                MainRepository.getInstance().requestCurrentWeather(currentWeatherList ->
-                        mCurrentWeather.postValue(currentWeatherList.get(0)));
-                MainRepository.getInstance().requestDailyForecasts(mDailyForecasts::postValue);
-                MainRepository.getInstance().requestHourlyForecasts(mHourlyForecasts::postValue);
-                prefsManager.saveLocationKey(locationResponse.getLocationKey());
-                prefsManager.saveCity(locationResponse.getCity());
-            });
+            mMainRepository.requestLocationKey(result);
         } else {
+            //if location cannot be determined, get it from SharedPrefs
             if (prefsManager.getLocationKey() != AppPrefsManager.LOCATION_KEY_NULL) {
-                MainRepository.getInstance().setLocationKey(prefsManager.getLocationKey());
+                mMainRepository.setLocationKey(prefsManager.getLocationKey());
                 mCity.setValue(prefsManager.getCity());
-                MainRepository.getInstance().requestCurrentWeather(currentWeatherList ->
-                        mCurrentWeather.postValue(currentWeatherList.get(0)));
-                MainRepository.getInstance().requestDailyForecasts(mDailyForecasts::postValue);
-                MainRepository.getInstance().requestHourlyForecasts(mHourlyForecasts::postValue);
             }
         }
     }
@@ -68,6 +69,7 @@ public class MainViewModel extends ViewModel implements ViewModelContract.Activi
     protected void onCleared() {
         super.onCleared();
         mLocationManager.clearContext();
+        mLocationKey.removeObserver(mLocationKeyObserver);
     }
 
     @Override
